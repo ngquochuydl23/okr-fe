@@ -1,0 +1,16 @@
+.okr-tree-view {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  background: white;
+  border-radius: 12px;
+  padding: 24px;
+  position: relative;
+  border: 1px solid $border-light;
+  transition: box-shadow 0.2s ease;
+  margin-top: 2rem;
+  &__wrapper {
+    height: 500px;
+    width: 100%;
+  }
+}

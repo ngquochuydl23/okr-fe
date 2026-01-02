@@ -4,7 +4,7 @@
   display: flex;
   flex-direction: column;
   position: relative;
-
+  max-height: 100vh;
   &-header {
     display: flex;
     width: 100%;
@@ -103,7 +103,7 @@
   flex-direction: column;
   flex-grow: 1;
   border-left: 1px solid #d3d3d3;
-
+  max-height: 100vh;
   &-header {
     display: flex;
     width: 100%;
@@ -144,12 +144,13 @@
 
   .outlet-container {
     padding: 1.5rem;
+    overflow: auto;
   }
 }
 
 .layout-container {
   display: flex;
-  width: 100vw;
+  width: 100%;
   min-height: 100vh;
   flex-direction: row;
   flex-grow: 1;

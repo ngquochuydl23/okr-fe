@@ -7,8 +7,24 @@
   background: white;
   border-radius: 12px;
   padding: 24px;
+  position: relative;
   border: 1px solid $border-light;
   transition: box-shadow 0.2s ease;
+
+  .widget-btn {
+    display: none;
+  }
+
+  &:hover {
+    .widget-btn {
+      z-index: 1;
+      position: absolute;
+      right: 10px;
+      top: 10px;
+      display: flex;
+      align-items: center;
+    }
+  }
 
   &__title {
     font-family: "Google Sans";
@@ -103,21 +119,21 @@
   }
 
   &__summary-label {
-    font-family: "Google Sans";
     font-size: 14px;
     font-weight: 500;
     color: #4b5563;
   }
 
   &__summary-value {
-    font-family: "Google Sans";
+    display: flex;
+    align-items: center;
     font-size: 16px;
+    gap: 10px;
     font-weight: 600;
     color: #1f2937;
   }
 
   &__summary-total {
-    font-family: "Google Sans";
     text-align: center;
     padding-top: 12px;
     margin-top: 8px;

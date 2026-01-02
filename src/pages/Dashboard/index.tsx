@@ -1,16 +1,15 @@
-import { Flex } from "@radix-ui/themes";
 import "./dashboard.scss";
 import DashboardCard from "./components/DashboardCard";
 import { TbTargetArrow } from "react-icons/tb";
 import { SiTicktick } from "react-icons/si";
 import { FaRegFlag } from "react-icons/fa";
-import ReactECharts from "echarts-for-react";
 import CheckInChart from "./components/CheckInChart";
 import OKRStackBar from "./components/OKRStackBar";
+import OKRTreeView from "./components/OKRTreeView";
 
 export default function Dashboard() {
   return (
-    <Flex direction="column" gap="4">
+    <div>
       <div>
         <h4>Hi, Huy</h4>
         <div className="dashboard-statistic">
@@ -80,7 +79,8 @@ export default function Dashboard() {
             showPercentage={true}
           />
         </div>
+        <OKRTreeView />
       </div>
-    </Flex>
+    </div>
   );
 }

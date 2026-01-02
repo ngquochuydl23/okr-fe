@@ -11,6 +11,7 @@
   transition: all 0.3s ease;
   overflow: hidden;
   cursor: pointer;
+
   &--loading {
     pointer-events: none;
   }
@@ -113,6 +114,21 @@
     &--subtitle {
       width: 80%;
       height: 14px;
+    }
+  }
+
+  .widget-btn {
+    display: none;
+  }
+
+  &:hover {
+    .widget-btn {
+      z-index: 1;
+      position: absolute;
+      right: 10px;
+      top: 10px;
+      display: flex;
+      align-items: center;
     }
   }
 }

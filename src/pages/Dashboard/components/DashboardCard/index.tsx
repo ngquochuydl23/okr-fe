@@ -2,6 +2,8 @@ import { memo } from "react";
 import type { ReactNode } from "react";
 import clsx from "clsx";
 import "./dashboard-card.scss";
+import { IconButton, Tooltip } from "@radix-ui/themes";
+import { FaWandMagicSparkles } from "react-icons/fa6";
 
 export interface DashboardCardProps {
   title?: string;
@@ -86,6 +88,11 @@ const DashboardCard = memo<DashboardCardProps>(
               </div>
             )}
             {subtitle && <p className="dashboard-card__subtitle">{subtitle}</p>}
+            <Tooltip content="Get me more insights">
+              <IconButton className="widget-btn" variant="outline">
+                <FaWandMagicSparkles size={15}/>
+              </IconButton>
+            </Tooltip>
           </>
         )}
       </div>

@@ -10,6 +10,8 @@ import {
 import { Bar } from "react-chartjs-2";
 import clsx from "clsx";
 import "./okr-stack-bar.scss";
+import { IconButton } from "@radix-ui/themes";
+import { FaWandMagicSparkles } from "react-icons/fa6";
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Tooltip, Legend);
 
@@ -238,7 +240,9 @@ const OKRStackBar = memo<OKRStackBarProps>(
     return (
       <div className={clsx("okr-stack-bar", className)}>
         {title && <h3 className="okr-stack-bar__title">{title}</h3>}
-
+        <IconButton className="widget-btn" variant="outline">
+          <FaWandMagicSparkles size={15}/>
+        </IconButton>
         {loading ? (
           <div className="okr-stack-bar__loading">
             <div className="okr-stack-bar__skeleton okr-stack-bar__skeleton--chart" />

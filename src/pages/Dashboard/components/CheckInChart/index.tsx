@@ -3,6 +3,10 @@ import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import { Doughnut } from "react-chartjs-2";
 import clsx from "clsx";
 import "./check-in-chart.scss";
+import { IconButton } from "@radix-ui/themes";
+import { FaWandMagicSparkles } from "react-icons/fa6";
+import { Tooltip as TooltipRadix } from "@radix-ui/themes";
+import { IoIosArrowForward } from "react-icons/io";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
@@ -83,6 +87,11 @@ const CheckInChart = memo<CheckInChartProps>(
     return (
       <div className={clsx("check-in-chart", className)}>
         {title && <h3 className="check-in-chart__title">{title}</h3>}
+        <TooltipRadix content="Get me more insight about check-in status">
+          <IconButton className="widget-btn" variant="outline">
+            <FaWandMagicSparkles size={15} />
+          </IconButton>
+        </TooltipRadix>
         {loading ? (
           <div className="check-in-chart__loading">
             <div className="check-in-chart__skeleton check-in-chart__skeleton--chart" />
@@ -99,18 +108,21 @@ const CheckInChart = memo<CheckInChartProps>(
                   <span className="check-in-chart__summary-label">On Track</span>
                   <span className="check-in-chart__summary-value">
                     {data.onTrack}
+                    <IoIosArrowForward />
                   </span>
                 </div>
                 <div className="check-in-chart__summary-item check-in-chart__summary-item--at-risk">
                   <span className="check-in-chart__summary-label">At Risk</span>
                   <span className="check-in-chart__summary-value">
                     {data.atRisk}
+                    <IoIosArrowForward />
                   </span>
                 </div>
                 <div className="check-in-chart__summary-item check-in-chart__summary-item--behind">
                   <span className="check-in-chart__summary-label">Behind</span>
                   <span className="check-in-chart__summary-value">
                     {data.behind}
+                    <IoIosArrowForward />
                   </span>
                 </div>
                 <div className="check-in-chart__summary-total">
