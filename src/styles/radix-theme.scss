@@ -1,0 +1,122 @@
+.radix-themes {
+  --accent-1: #E8EEFA;
+  --accent-2: #C6D5F2;
+  --accent-3: #9BB6E8;
+  --accent-4: #6F96DE;
+  --accent-5: #4F7ED5;
+  --accent-6: #003B95;
+  --accent-7: #003B95;
+  --accent-8: #00347F;
+  --accent-9: #003B95;
+  --accent-10: #002B68;
+  --accent-11: #002152;
+  --accent-12: #00173B;
+
+  --accent-a1: rgba(0, 59, 149, 0.05);
+  --accent-a2: rgba(0, 59, 149, 0.1);
+  --accent-a3: rgba(0, 59, 149, 0.15);
+  --accent-a4: rgba(0, 59, 149, 0.2);
+  --accent-a5: rgba(0, 59, 149, 0.3);
+  --accent-a6: rgba(0, 59, 149, 0.4);
+  --accent-a7: rgba(0, 59, 149, 0.5);
+  --accent-a8: rgba(0, 59, 149, 0.6);
+  --accent-a9: rgba(0, 59, 149, 1);
+  --accent-a10: rgba(0, 59, 149, 0.8);
+  --accent-a11: rgba(0, 43, 104, 1);
+  --accent-a12: rgba(0, 23, 59, 1);
+
+  --gray-1: #F8FAFC;
+  --gray-2: #F1F5F9;
+  --gray-3: #E2E8F0;
+  --gray-4: #CBD5E1;
+  --gray-5: #94A3B8;
+  --gray-6: #64748B;
+  --gray-7: #475569;
+  --gray-8: #334155;
+  --gray-9: #1E293B;
+  --gray-10: #0F172A;
+  --gray-11: #334155;
+  --gray-12: #0F172A;
+
+  --green-9: #22C55E;
+  --green-3: #DCFCE7;
+  --green-11: #15803D;
+
+  --amber-9: #F59E0B;
+  --amber-3: #FEF3C7;
+  --amber-11: #B45309;
+
+  --red-9: #EF4444;
+  --red-3: #FEE2E2;
+  --red-11: #B91C1C;
+
+  --blue-9: #3B82F6;
+  --blue-3: #DBEAFE;
+  --blue-11: #1D4ED8;
+}
+
+.radix-themes {
+  --color-background: #F8FAFC;
+  --color-panel: #f5f8fe;
+  --color-surface: #F1F5F9;
+}
+
+.radix-themes {
+  --gray-12: #334155;
+  --gray-11: #475569;
+}
+
+.radix-themes {
+  --shadow-1: none;
+  --shadow-2: 0 1px 2px rgba(0, 0, 0, 0.04);
+  --shadow-3: 0 2px 4px rgba(0, 0, 0, 0.04);
+  --shadow-4: 0 2px 6px rgba(0, 0, 0, 0.06);
+  --shadow-5: 0 8px 24px rgba(0, 0, 0, 0.08);
+  
+  --radius-1: 4px;
+  --radius-2: 6px;
+  --radius-3: 8px;
+  --radius-4: 10px;
+  --radius-5: 12px;
+  --radius-6: 16px;
+}
+
+.rt-Card {
+  box-shadow: none !important;
+  border: 1px solid var(--gray-3);
+  transition: border-color 150ms ease;
+  
+  &:hover {
+    border-color: var(--gray-4);
+  }
+}
+
+.rt-Button {
+  transition: all 150ms ease;
+  font-weight: 500;
+  
+  &:active {
+    transform: translateY(1px);
+  }
+  
+  &[data-accent-color]:not([data-variant="soft"]):not([data-variant="ghost"]):not([data-variant="outline"]) {
+    &:hover {
+      background-color: var(--color-primary-700);
+    }
+    
+    &:active {
+      background-color: var(--color-primary-800);
+    }
+  }
+}
+
+.rt-TextFieldInput,
+.rt-TextAreaInput,
+.rt-SelectTrigger {
+  transition: border-color 150ms ease;
+}
+
+.rt-Badge {
+  border-radius: 4px;
+  font-weight: 500;
+}

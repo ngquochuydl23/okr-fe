@@ -1,0 +1,60 @@
+@use './colors';
+
+#root {
+  margin: 0 auto;
+  min-width: 100vh;
+  background-color: var(--color-bg-page);
+}
+
+.demo-section {
+  text-align: center;
+  padding: var(--section-gap-lg) 0;
+}
+
+.logo {
+  height: 6em;
+  padding: var(--space-4);
+  will-change: filter;
+  transition: filter var(--transition-base);
+  
+  &:hover {
+    filter: drop-shadow(0 0 2em rgba(0, 59, 149, 0.4));
+  }
+  
+  &.react:hover {
+    filter: drop-shadow(0 0 2em #61dafbaa);
+  }
+}
+
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  a:nth-of-type(2) .logo {
+    animation: logo-spin infinite 20s linear;
+  }
+}
+
+.example-card {
+  background-color: white;
+  border: var(--border);
+  border-radius: var(--card-radius);
+  padding: var(--space-6);
+  margin: var(--space-4) 0;
+  transition: border-color var(--transition-fast);
+  
+  &:hover {
+    border-color: var(--color-gray-300);
+  }
+}
+
+.read-the-docs {
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-sm);
+}

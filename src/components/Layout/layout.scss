@@ -1,0 +1,156 @@
+.sidebar {
+  width: 280px;
+  background-color: rgb(233, 238, 246);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+
+  &-header {
+    display: flex;
+    width: 100%;
+    padding: 1rem;
+
+    .toggle-btn {
+      margin-left: 0.25rem;
+    }
+  }
+
+  .navigation-container {
+    padding: 0 0.5rem;
+    .navigation-item {
+      display: flex;
+      height: 40px;
+      align-items: center;
+      padding: 0px 1rem;
+      gap: 1rem;
+      flex-direction: row;
+      font-size: 0.875rem;
+      border-radius: var(--radius-xs);
+      cursor: pointer;
+      font-weight: 600;
+      background-color: transparent;
+      color: var(--gray-12);
+      &.active {
+        background-color: rgb(211, 227, 253);
+        color: var(--color-primary-500);
+
+        svg {
+          color: var(--color-primary-500);
+        }
+      }
+
+      &-label {
+        display: block;
+      }
+
+      &.child {
+        padding-left: 3rem;
+        height: 36px;
+        font-weight: 500;
+        font-size: 0.8125rem;
+      }
+
+      svg {
+        color: var(--gray-12);
+      }
+
+      &:hover {
+        background-color: $gray-200;
+      }
+    }
+
+    .nav-children {
+      display: flex;
+      flex-direction: column;
+    }
+  }
+
+  .workspaces {
+    padding: 1rem 1rem;
+    display: flex;
+    flex-grow: 1;
+    .label {
+      font-size: 14px;
+      font-weight: 600;
+    }
+  }
+
+  &.collapse {
+    width: 60px;
+    .navigation-container {
+      .navigation-item {
+        padding: 0;
+        justify-content: center;
+        &-label {
+          display: none;
+        }
+      }
+    }
+
+    .workspaces {
+      visibility: hidden;
+    }
+
+    .toggle-btn {
+      margin-left: 0;
+    }
+  }
+}
+
+.main-section {
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  border-left: 1px solid #d3d3d3;
+
+  &-header {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    padding: 0.25rem 1.5rem;
+    svg {
+      color: var(--gray-12);
+    }
+    .workspace-header {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+
+      .workspace-logo {
+        height: 40px;
+      }
+
+      .workspace-name {
+        font-weight: 600;
+
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+
+      .vision-name {
+        color: var(--gray-12);
+        font-size: 12px;
+      }
+    }
+
+    .right {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+    }
+  }
+
+  .outlet-container {
+    padding: 1.5rem;
+  }
+}
+
+.layout-container {
+  display: flex;
+  width: 100vw;
+  min-height: 100vh;
+  flex-direction: row;
+  flex-grow: 1;
+}

@@ -1,0 +1,127 @@
+@use "@/styles/colors";
+
+.dashboard-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  background: white;
+  border: 1px solid $border-light;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  overflow: hidden;
+  cursor: pointer;
+  &--loading {
+    pointer-events: none;
+  }
+
+  &__header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  &__header-content {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex: 1;
+  }
+
+  &__title {
+    margin: 0;
+    font-size: 1rem;
+    font-weight: 500;
+    color: $text-secondary;
+    line-height: 1.4;
+    color: black;
+  }
+
+  &__value {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 2rem;
+    font-weight: 700;
+    color: $text-primary;
+    line-height: 1.2;
+    margin-top: 0.5rem;
+  }
+
+  &__trend {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    padding: 4px 8px;
+    border-radius: 6px;
+
+    &--positive {
+      color: $success-dark;
+      background: $success-light;
+    }
+
+    &--negative {
+      color: $error-dark;
+      background: $error-light;
+    }
+  }
+
+  &__trend-label {
+    font-weight: 400;
+    opacity: 0.8;
+    margin-left: 4px;
+  }
+
+  &__subtitle {
+    margin: 0;
+    font-size: 0.875rem;
+    color: $text-secondary;
+    line-height: 1.5;
+    margin-top: 0.25rem;
+  }
+
+  &__loading {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  &__skeleton {
+    background: linear-gradient(
+      90deg,
+      $gray-200 0%,
+      $gray-100 50%,
+      $gray-200 100%
+    );
+    background-size: 200% 100%;
+    animation: loading 1.5s ease-in-out infinite;
+    border-radius: 6px;
+
+    &--title {
+      width: 60%;
+      height: 16px;
+    }
+
+    &--value {
+      width: 40%;
+      height: 32px;
+      margin: 8px 0;
+    }
+
+    &--subtitle {
+      width: 80%;
+      height: 14px;
+    }
+  }
+}
+
+@keyframes loading {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
