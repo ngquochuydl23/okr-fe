@@ -46,6 +46,9 @@ const OKRTreeView = () => {
           onEdgesChange={onEdgesChange}
           onConnect={onConnect}
           fitView
+          panOnScroll={true}
+          zoomOnScroll={false}
+          panOnScrollSpeed={0.5}
         >
           <Controls />
           <MiniMap />

@@ -12,3 +12,9 @@
   width: 100%;
   grid-template-columns: 1fr 2.5fr;
 }
+
+.dashboard-page {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}

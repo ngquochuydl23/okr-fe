@@ -1,0 +1,27 @@
+.profile-page {
+  max-width: 1200px;
+  
+  .profile-avatar-card {
+    padding: 2rem;
+    width: 100%;
+    max-width: 320px;
+    height: fit-content;
+  }
+
+  .upload-avatar-btn {
+    width: 100%;
+    
+    button {
+      width: 100%;
+      pointer-events: none;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .profile-page {
+    .profile-avatar-card {
+      max-width: 100%;
+    }
+  }
+}
