@@ -7,6 +7,7 @@ import { IconButton } from "@radix-ui/themes";
 import { FaWandMagicSparkles } from "react-icons/fa6";
 import { Tooltip as TooltipRadix } from "@radix-ui/themes";
 import { IoIosArrowForward } from "react-icons/io";
+import { useChatbot } from "@/contexts/ChatbotContext";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
@@ -23,8 +24,13 @@ export interface CheckInChartProps {
 
 const CheckInChart = memo<CheckInChartProps>(
   ({ title = "OKR Status Overview", data, loading = false, className }) => {
+    const { sendMessage } = useChatbot();
     const chartData = data || { onTrack: 0, atRisk: 0, behind: 0 };
     const total = chartData.onTrack + chartData.atRisk + chartData.behind;
+    
+    const handleWidgetClick = () => {
+      sendMessage("Get me more insight about check-in status");
+    };
 
     const chartConfig = {
       labels: ["On Track", "At Risk", "Behind"],
@@ -88,7 +94,7 @@ const CheckInChart = memo<CheckInChartProps>(
       <div className={clsx("check-in-chart", className)}>
         {title && <h3 className="check-in-chart__title">{title}</h3>}
         <TooltipRadix content="Get me more insight about check-in status">
-          <IconButton className="widget-btn" variant="outline">
+          <IconButton className="widget-btn" variant="outline" onClick={handleWidgetClick}>
             <FaWandMagicSparkles size={15} />
           </IconButton>
         </TooltipRadix>

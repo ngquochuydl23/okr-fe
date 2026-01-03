@@ -12,6 +12,7 @@ import clsx from "clsx";
 import "./okr-stack-bar.scss";
 import { IconButton } from "@radix-ui/themes";
 import { FaWandMagicSparkles } from "react-icons/fa6";
+import { useChatbot } from "@/contexts/ChatbotContext";
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Tooltip, Legend);
 
@@ -28,7 +29,7 @@ export interface OKRStackBarProps {
   data?: WeeklyOKRData[];
   loading?: boolean;
   className?: string;
-  showPercentage?: boolean; // true for 100% stacked, false for count
+  showPercentage?: boolean;
 }
 
 const OKRStackBar = memo<OKRStackBarProps>(
@@ -39,14 +40,18 @@ const OKRStackBar = memo<OKRStackBarProps>(
     className,
     showPercentage = true,
   }) => {
-    // Prepare data for Chart.js
+    const { sendMessage } = useChatbot();
+    
+    const handleWidgetClick = () => {
+      sendMessage("Get me more insights about OKR status trends");
+    };
+    
     const labels = data.map((d) => d.week);
     const onTrackData = data.map((d) => d.onTrack);
     const atRiskData = data.map((d) => d.atRisk);
     const behindData = data.map((d) => d.behind);
     const unknownData = data.map((d) => d.unknown);
 
-    // Calculate percentages if needed
     const totals = data.map((d) => d.onTrack + d.atRisk + d.behind + d.unknown);
     const onTrackPercentages = data.map((d, i) =>
       totals[i] > 0 ? (d.onTrack / totals[i]) * 100 : 0
@@ -220,7 +225,6 @@ const OKRStackBar = memo<OKRStackBarProps>(
       },
     };
 
-    // Show message if not enough data
     if (!loading && data.length < 4) {
       return (
         <div className={clsx("okr-stack-bar", className)}>
@@ -240,7 +244,7 @@ const OKRStackBar = memo<OKRStackBarProps>(
     return (
       <div className={clsx("okr-stack-bar", className)}>
         {title && <h3 className="okr-stack-bar__title">{title}</h3>}
-        <IconButton className="widget-btn" variant="outline">
+        <IconButton className="widget-btn" variant="outline" onClick={handleWidgetClick}>
           <FaWandMagicSparkles size={15}/>
         </IconButton>
         {loading ? (

@@ -41,7 +41,31 @@ export const ChatbotProvider = ({ children }: ChatbotProviderProps) => {
 
   const sendMessage = (text: string) => {
     if (!text.trim()) return;
-    return;
+    
+    const userMessage: ChatMessage = {
+      id: `user-${Date.now()}`,
+      text: text.trim(),
+      sender: "user",
+      timestamp: new Date(),
+    };
+    
+    setMessages((prev) => [...prev, userMessage]);
+    
+    // Auto-open chatbot when sending a message
+    if (!isOpen) {
+      setIsOpen(true);
+    }
+    
+    // Simulate bot response (you can replace this with actual API call)
+    setTimeout(() => {
+      const botMessage: ChatMessage = {
+        id: `bot-${Date.now()}`,
+        text: "I received your message. How can I help you?",
+        sender: "bot",
+        timestamp: new Date(),
+      };
+      setMessages((prev) => [...prev, botMessage]);
+    }, 1000);
   };
 
   return (

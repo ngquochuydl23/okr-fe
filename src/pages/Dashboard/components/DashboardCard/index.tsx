@@ -4,6 +4,7 @@ import clsx from "clsx";
 import "./dashboard-card.scss";
 import { IconButton, Tooltip } from "@radix-ui/themes";
 import { FaWandMagicSparkles } from "react-icons/fa6";
+import { useChatbot } from "@/contexts/ChatbotContext";
 
 export interface DashboardCardProps {
   title?: string;
@@ -36,6 +37,11 @@ const DashboardCard = memo<DashboardCardProps>(
     badge,
     className,
   }) => {
+    const { sendMessage } = useChatbot();
+    
+    const handleWidgetClick = () => {
+      sendMessage(`Get me more insights about ${title || "this metric"}`);
+    };
     return (
       <div
         className={clsx(
@@ -89,7 +95,7 @@ const DashboardCard = memo<DashboardCardProps>(
             )}
             {subtitle && <p className="dashboard-card__subtitle">{subtitle}</p>}
             <Tooltip content="Get me more insights">
-              <IconButton className="widget-btn" variant="outline">
+              <IconButton className="widget-btn" variant="outline" onClick={handleWidgetClick}>
                 <FaWandMagicSparkles size={15}/>
               </IconButton>
             </Tooltip>
