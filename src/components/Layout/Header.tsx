@@ -26,16 +26,16 @@ export const Header = ({
       <div className="workspace-header">
         <img
           className="workspace-logo"
-          src="https://diadiembank.com/wp-content/uploads/2024/09/logo-hdbank.svg"
+          src="https://companieslogo.com/img/orig/MAERSK-B.CO-cdb8c805.png?t=1720244492"
           alt="Workspace Logo"
         />
         <div>
           <WorkspaceDetailDialog
             open={openWorkspaceDialog}
             onOpenChange={onWorkspaceDialogChange}
-            trigger={<div className="workspace-name">HDBank IT Lab</div>}
+            trigger={<div className="workspace-name">Maersk</div>}
           />
-          <div className="vision-name">Banking Beyond Boundaries</div>
+          <div className="vision-name">Integrated Container Logistics</div>
         </div>
       </div>
       <div className="right">

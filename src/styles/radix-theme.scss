@@ -122,7 +122,25 @@
   transition: border-color 150ms ease;
 }
 
+.rt-SelectTrigger:focus-within,
+.rt-SelectTrigger[data-state="open"] {
+  outline: 2px solid var(--accent-a5);
+  outline-offset: -1px;
+  border-color: var(--accent-9);
+  color: var(--gray-12);
+}
+
+.rt-TextFieldRoot:focus-within {
+  outline: 2px solid var(--accent-a5);
+  outline-offset: -1px;
+  border-color: var(--accent-9);
+}
+
 .rt-Badge {
   border-radius: 4px;
   font-weight: 500;
+}
+
+.rt-IconButton {
+  cursor: pointer;
 }

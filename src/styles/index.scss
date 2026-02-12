@@ -163,7 +163,7 @@ a {
   }
 
   &:focus-visible {
-    outline: 2px solid var(--color-primary);
+    outline: 2px solid var(--accent-a8);
     outline-offset: 2px;
     border-radius: var(--radius-xs);
   }
@@ -195,7 +195,7 @@ button {
   }
 
   &:focus-visible {
-    outline: 2px solid var(--color-primary);
+    outline: 2px solid var(--accent-a8);
     outline-offset: 2px;
   }
 
@@ -241,10 +241,14 @@ select {
     border-color: var(--color-gray-300);
   }
 
+  &:focus-visible {
+    outline: 2px solid var(--accent-a8);
+    outline-offset: 1px;
+    border-color: var(--accent-9);
+  }
+
   &:focus {
-    outline: 2px solid var(--color-primary);
-    outline-offset: 0;
-    border-color: var(--color-primary);
+    outline: none;
   }
 
   &::placeholder {
@@ -302,4 +306,27 @@ table {
       }
     }
   }
+}
+
+.rt-SelectContent {
+  background-color: white !important;
+
+  .rt-SelectItem {
+    color: var(--gray-12);
+
+    &[data-highlighted],
+    &:focus {
+      background-color: var(--gray-3) !important;
+      color: var(--gray-12) !important;
+    }
+
+    &[data-state="checked"] {
+      color: var(--accent-9);
+    }
+  }
+}
+
+::selection {
+  background-color: var(--accent-9);
+  color: white;
 }

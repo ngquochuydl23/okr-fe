@@ -1,18 +1,25 @@
-import { Card, Heading, Text, Flex, Button, Badge, DataList } from "@radix-ui/themes";
-import { TbTargetArrow, TbPlus } from "react-icons/tb";
-import { HiOutlineSupport } from "react-icons/hi";
+import { ObjectiveType } from "@/constants/objective.constants";
+import ObjectiveTable from "./components/ObjectiveTable";
+import type { Objective } from "./components/ObjectiveTable";
 
 export default function SupportingObjectives() {
-  const mockSupportingObjectives = [
+  const mockSupportingObjectives: Objective[] = [
     {
       id: "1",
       title: "Support Infrastructure Upgrade",
       description: "Assist in migrating legacy systems to cloud",
       progress: 70,
       status: "On Track",
-      supportingFor: "Platform Reliability Initiative",
-      priority: "High",
+      cycle: {
+        id: '',
+        name: 'Q1 2026'
+      },
+      owner: { id: "u1", fullName: "Nguyen Quoc Huy", avatar: "" },
       dueDate: "Q1 2026",
+      keyResults: [
+        { id: "kr-1-1", title: "Migrate 3 legacy services to cloud", progress: 80, status: "On Track", owner: "Nguyen Quoc Huy", dueDate: "Q1 2026" },
+        { id: "kr-1-2", title: "Achieve 99.9% uptime on migrated services", progress: 60, status: "On Track", owner: "Nguyen Quoc Huy", dueDate: "Q1 2026" },
+      ],
     },
     {
       id: "2",
@@ -20,9 +27,16 @@ export default function SupportingObjectives() {
       description: "Create comprehensive API documentation",
       progress: 45,
       status: "On Track",
-      supportingFor: "Product Features Development",
-      priority: "Medium",
+      cycle: {
+        id: '',
+        name: 'Q1 2026'
+      },
+      owner: { id: "u1", fullName: "Nguyen Quoc Huy", avatar: "" },
       dueDate: "Q2 2026",
+      keyResults: [
+        { id: "kr-2-1", title: "Document 100% of public API endpoints", progress: 50, status: "On Track", owner: "Nguyen Quoc Huy", dueDate: "Q2 2026" },
+        { id: "kr-2-2", title: "Publish interactive API playground", progress: 40, status: "At Risk", owner: "Nguyen Quoc Huy", dueDate: "Q2 2026" },
+      ],
     },
     {
       id: "3",
@@ -30,133 +44,27 @@ export default function SupportingObjectives() {
       description: "Establish automated testing framework",
       progress: 30,
       status: "At Risk",
-      supportingFor: "Accelerate Delivery",
-      priority: "High",
+      cycle: {
+        id: '',
+        name: 'Q1 2026'
+      },
+      owner: { id: "u1", fullName: "Nguyen Quoc Huy", avatar: "" },
       dueDate: "Q1 2026",
+      keyResults: [
+        { id: "kr-3-1", title: "Achieve 80% code coverage on critical paths", progress: 25, status: "At Risk", owner: "Nguyen Quoc Huy", dueDate: "Q1 2026" },
+        { id: "kr-3-2", title: "Set up CI/CD pipeline with automated tests", progress: 35, status: "On Track", owner: "Nguyen Quoc Huy", dueDate: "Q1 2026" },
+      ],
     },
   ];
 
-  const getStatusColor = (status: string) => {
-    switch (status) {
-      case "On Track":
-        return "green";
-      case "At Risk":
-        return "orange";
-      case "Behind":
-        return "red";
-      default:
-        return "gray";
-    }
-  };
-
-  const getPriorityColor = (priority: string) => {
-    switch (priority) {
-      case "High":
-        return "red";
-      case "Medium":
-        return "orange";
-      case "Low":
-        return "blue";
-      default:
-        return "gray";
-    }
-  };
-
   return (
     <div>
-      <Flex justify="between" align="center" mb="5">
-        <div>
-          <Heading size="6" mb="1">
-            Supporting Objectives
-          </Heading>
-          <Text color="gray" size="2">
-            Objectives that support and enable other key initiatives
-          </Text>
-        </div>
-        <Button size="3">
-          <TbPlus size={18} />
-          New Supporting Objective
-        </Button>
-      </Flex>
-
-      <Flex direction="column" gap="4">
-        {mockSupportingObjectives.map((objective) => (
-          <Card key={objective.id} style={{ padding: "1.5rem" }}>
-            <Flex direction="column" gap="3">
-              <Flex justify="between" align="start">
-                <Flex align="center" gap="2">
-                  <HiOutlineSupport size={24} color="var(--orange-9)" />
-                  <Heading size="4">{objective.title}</Heading>
-                </Flex>
-                <Flex gap="2">
-                  <Badge color={getPriorityColor(objective.priority) as any} variant="soft">
-                    {objective.priority}
-                  </Badge>
-                  <Badge color={getStatusColor(objective.status) as any}>
-                    {objective.status}
-                  </Badge>
-                </Flex>
-              </Flex>
-
-              <Text color="gray" size="2">
-                {objective.description}
-              </Text>
-
-              <DataList.Root>
-                <DataList.Item>
-                  <DataList.Label>Supporting For</DataList.Label>
-                  <DataList.Value>
-                    <Text size="2" weight="medium">
-                      {objective.supportingFor}
-                    </Text>
-                  </DataList.Value>
-                </DataList.Item>
-                <DataList.Item>
-                  <DataList.Label>Due Date</DataList.Label>
-                  <DataList.Value>{objective.dueDate}</DataList.Value>
-                </DataList.Item>
-                <DataList.Item>
-                  <DataList.Label>Progress</DataList.Label>
-                  <DataList.Value>
-                    <Flex align="center" gap="2">
-                      <div
-                        style={{
-                          width: "100px",
-                          height: "8px",
-                          background: "var(--gray-4)",
-                          borderRadius: "4px",
-                          overflow: "hidden",
-                        }}
-                      >
-                        <div
-                          style={{
-                            width: `${objective.progress}%`,
-                            height: "100%",
-                            background: "var(--orange-9)",
-                            transition: "width 0.3s ease",
-                          }}
-                        />
-                      </div>
-                      <Text size="2" weight="medium">
-                        {objective.progress}%
-                      </Text>
-                    </Flex>
-                  </DataList.Value>
-                </DataList.Item>
-              </DataList.Root>
-
-              <Flex gap="2" mt="2">
-                <Button variant="soft" size="2">
-                  View Details
-                </Button>
-                <Button variant="ghost" size="2">
-                  Edit
-                </Button>
-              </Flex>
-            </Flex>
-          </Card>
-        ))}
-      </Flex>
+      <ObjectiveTable
+        title="Supporting OKR"
+        type={ObjectiveType.SUPPORTING}
+        objectives={mockSupportingObjectives}
+        color="var(--orange-9)"
+      />
     </div>
   );
 }

@@ -11,7 +11,6 @@ import { ChatbotProvider } from "./contexts/ChatbotContext";
 import Login from "./pages/Login";
 import Unauthorized from "./pages/Unauthorized";
 import Dashboard from "./pages/Dashboard";
-import Objectives from "./pages/Objectives/Objectives";
 import WorkspaceObjectives from "./pages/Objectives/Workspace";
 import TeamObjectives from "./pages/Objectives/Team";
 import PersonalObjectives from "./pages/Objectives/Personal";
@@ -45,10 +44,6 @@ const router = createBrowserRouter([
       {
         index: true,
         element: <Dashboard />,
-      },
-      {
-        path: "objectives",
-        element: <Objectives />,
       },
       {
         path: "objectives/workspace",
