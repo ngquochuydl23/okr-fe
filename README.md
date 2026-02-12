@@ -2,6 +2,7 @@
 
 ![OKR Dashboard](./docs/dashboard-screenshot.png)
 
+![OKR Table](./docs/okr-table.png)
 This is the frontend application for the OKR (Objectives and Key Results) Management System. It is a modern web application built with React, Vite, and TypeScript, designed to help organizations, teams, and individuals track their goals and progress effectively.
 
 ## 🚀 Features

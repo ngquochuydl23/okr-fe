@@ -11,6 +11,9 @@ export default function TeamObjectives() {
       description: "Streamline workflows and reduce bottlenecks",
       progress: 65,
       status: "On Track",
+      priority: "High",
+      type: "Team",
+      tags: ["Productivity", "Workflow"],
       cycle: {
         id: '',
         name: 'Q1 2026'
@@ -32,6 +35,9 @@ export default function TeamObjectives() {
       description: "Foster better cross-functional communication",
       progress: 50,
       status: "On Track",
+      priority: "Medium",
+      type: "Team",
+      tags: ["Collaboration", "Communication"],
       cycle: {
         id: '',
         name: 'Q1 2026'
@@ -53,6 +59,9 @@ export default function TeamObjectives() {
       description: "Reduce time-to-market for new features",
       progress: 35,
       status: "At Risk",
+      priority: "Critical",
+      type: "Team",
+      tags: ["Delivery", "CI/CD", "Speed"],
       cycle: {
         id: '',
         name: 'Q1 2026'
@@ -227,6 +236,7 @@ export default function TeamObjectives() {
         type={ObjectiveType.TEAM}
         columns={[
           { key: "title", label: "Objective & Key results" },
+          { key: "cycle", label: "Cycle" },
           { key: "status", label: "Status" },
           { key: "progress", label: "Progress" },
           { key: "team", label: "Team" },

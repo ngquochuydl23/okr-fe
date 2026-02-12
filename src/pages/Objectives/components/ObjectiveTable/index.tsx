@@ -22,6 +22,10 @@ export interface Objective {
   description: string;
   progress: number;
   status: string;
+  priority?: "Critical" | "High" | "Medium" | "Low";
+  type?: "Company" | "Department" | "Team" | "Personal";
+  mission?: string;
+  tags?: string[];
   cycle: {
     id: string,
     name: string;
@@ -36,6 +40,7 @@ export interface Objective {
     name: string
   } | null;
   dueDate: string;
+  createdAt: string;
   keyResults: KeyResult[];
 }
 

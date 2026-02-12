@@ -3,6 +3,8 @@
   border-radius: 6px;
   overflow: hidden;
   background: var(--color-background);
+  max-width: 100%;
+  min-width: 0;
 
   &--readonly {
     border: 1px solid var(--gray-4);
@@ -32,6 +34,8 @@
     line-height: 1.6;
     color: var(--gray-12);
     overflow-y: auto;
+    overflow-x: hidden;
+    word-break: break-word;
     outline: none;
 
     // Block-level elements
