@@ -20,6 +20,7 @@ import KeyResults from "./pages/KeyResults";
 import Teams from "./pages/Teams";
 import Settings from "./pages/Settings/Menu";
 import Profile from "./pages/Settings/Profile";
+import CycleManagement from "./pages/Settings/Cycle";
 import AdminPanel from "./pages/AdminPanel";
 import { LoadingContextProvider } from "./contexts/LoadingContextProvider";
 
@@ -84,6 +85,10 @@ const router = createBrowserRouter([
       {
         path: "settings/profile",
         element: <Profile />,
+      },
+      {
+        path: "settings/cycles",
+        element: <CycleManagement />,
       },
       {
         path: "admin",

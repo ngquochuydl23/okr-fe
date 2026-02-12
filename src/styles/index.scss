@@ -85,6 +85,7 @@
   margin: 0;
   padding: 0;
 }
+
 * {
   box-sizing: border-box;
   font-family: "Google Sans" !important;
@@ -126,18 +127,23 @@ h6 {
 h1 {
   font-size: var(--font-size-4xl);
 }
+
 h2 {
   font-size: var(--font-size-3xl);
 }
+
 h3 {
   font-size: var(--font-size-2xl);
 }
+
 h4 {
   font-size: var(--font-size-xl);
 }
+
 h5 {
   font-size: var(--font-size-lg);
 }
+
 h6 {
   font-size: var(--font-size-base);
 }
@@ -285,5 +291,15 @@ select {
 
   &:hover {
     background: var(--color-gray-400);
+  }
+}
+
+table {
+  tbody {
+    tr {
+      &:hover {
+        background-color: $gray-200;
+      }
+    }
   }
 }
