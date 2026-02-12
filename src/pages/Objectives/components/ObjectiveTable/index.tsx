@@ -5,6 +5,7 @@ import Pagination from "@/components/Pagination";
 import { DEFAULT_COLUMNS, type ObjectiveTableColumn, type ObjectiveTypeValue } from "./objective-table.config";
 import { HiOutlineFlag } from "react-icons/hi";
 import { ObjectiveType } from "@/constants/objective.constants";
+import ObjectiveDetailDialog from "@/components/dialogs/ObjectiveDetailDialog";
 
 export interface KeyResult {
   id: string;
@@ -72,6 +73,13 @@ export default function ObjectiveTable({
   const [expandedIds, setExpandedIds] = useState<Set<string>>(new Set());
   const [searchTerm, setSearchTerm] = useState("");
   const [debouncedSearch, setDebouncedSearch] = useState("");
+  const [selectedObjective, setSelectedObjective] = useState<Objective | null>(null);
+  const [detailOpen, setDetailOpen] = useState(false);
+
+  const handleViewDetail = (objective: Objective) => {
+    setSelectedObjective(objective);
+    setDetailOpen(true);
+  };
 
   useEffect(() => {
     const timer = setTimeout(() => { }, 300);
@@ -176,7 +184,15 @@ export default function ObjectiveTable({
                                 {expandedIds.has(objective.id) ? <TbChevronDown size={16} /> : <TbChevronRight size={16} />}
                               </IconButton>
                               <TbTargetArrow color={color} size={'18px'} style={{ flexShrink: 0 }} />
-                              <Text size="2" weight="medium" truncate>{objective.title}</Text>
+                              <Text
+                                size="2"
+                                weight="medium"
+                                truncate
+                                style={{ cursor: "pointer" }}
+                                onClick={() => handleViewDetail(objective)}
+                              >
+                                {objective.title}
+                              </Text>
                             </Flex>
                           </Table.RowHeaderCell>
                         );
@@ -260,7 +276,7 @@ export default function ObjectiveTable({
                   {showActions && (
                     <Table.Cell align="right">
                       <Flex gap="4" justify="end" align="center">
-                        <Button variant="soft" size="1">
+                        <Button variant="soft" size="1" onClick={() => handleViewDetail(objective)}>
                           Details
                         </Button>
                         <Button variant="ghost" size="1">
@@ -331,6 +347,12 @@ export default function ObjectiveTable({
         onPageSizeChange={() => {}}
       />
 
+      <ObjectiveDetailDialog
+        open={detailOpen}
+        onOpenChange={setDetailOpen}
+        objective={selectedObjective}
+        color={color}
+      />
     </div >
   );
 }
