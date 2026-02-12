@@ -1,6 +1,7 @@
-import { useState, useEffect, useMemo, Fragment } from "react";
+import { useState, useEffect, Fragment } from "react";
 import { Text, Flex, Button, Badge, Table, Progress, IconButton, HoverCard, Avatar, Box, Heading, TextField, Select } from "@radix-ui/themes";
 import { TbTargetArrow, TbChevronRight, TbChevronDown, TbSearch, TbPlus } from "react-icons/tb";
+import Pagination from "@/components/Pagination";
 import { DEFAULT_COLUMNS, type ObjectiveTableColumn, type ObjectiveTypeValue } from "./objective-table.config";
 import { HiOutlineFlag } from "react-icons/hi";
 import { ObjectiveType } from "@/constants/objective.constants";
@@ -73,7 +74,7 @@ export default function ObjectiveTable({
   const [debouncedSearch, setDebouncedSearch] = useState("");
 
   useEffect(() => {
-    const timer = setTimeout(() => {}, 300);
+    const timer = setTimeout(() => { }, 300);
     return () => clearTimeout(timer);
   }, [searchTerm]);
 
@@ -322,6 +323,13 @@ export default function ObjectiveTable({
         </Table.Body>
       </Table.Root>
 
+      <Pagination
+        page={1}
+        pageSize={10}
+        total={100}
+        onPageChange={() => {}}
+        onPageSizeChange={() => {}}
+      />
 
     </div >
   );
