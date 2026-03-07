@@ -1,0 +1,76 @@
+.mission-card {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  height: fit-content;
+  padding: 1rem;
+  justify-content: space-between;
+  border-left: 1rem solid #9DC9FF;
+  background-color: #f5f5f5;
+  gap: 1.5rem;
+  cursor: pointer;
+  border-radius: 4px;
+
+
+
+  &__info {
+    display: flex;
+    width: 100%;
+    gap: 5px;
+    flex-direction: column;
+  }
+
+  &__progress {
+    display: flex;
+    width: 100%;
+    gap: 0.4rem;
+    flex-direction: column;
+  }
+
+  &:hover {
+    background-color: rgb(233, 238, 246);
+  }
+}
+
+.complete-marker {
+  padding-top: 5px;
+  padding-right: 10px;
+}
+
+.popover-content {
+  width: 150px;
+  border-radius: 7px;
+  margin-right: 1rem;
+  display: flex;
+  box-sizing: border-box;
+  flex-direction: column;
+  padding: 6px 0px;
+
+  &-item {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    cursor: pointer;
+    margin: 0 0.5rem;
+    font-size: 14px;
+    font-weight: 600;
+    gap: 0.5rem;
+    padding: 0.25rem 0.5rem;
+    border-bottom: 1px solid $gray-200;
+
+    span {
+      display: flex;
+      align-items: center;
+    }
+
+    &:hover {
+      border-radius: 4px;
+      border-bottom: none;
+      background-color: $gray-200;
+    }
+
+    &:last-child {
+      border-bottom: none;
+    }
+  }
+}

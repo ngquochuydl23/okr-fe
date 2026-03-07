@@ -22,6 +22,7 @@ import Profile from "./pages/Settings/Profile";
 import CycleManagement from "./pages/Settings/Cycle";
 import AdminPanel from "./pages/AdminPanel";
 import { LoadingContextProvider } from "./contexts/LoadingContextProvider";
+import Missions from "./pages/Missions"; 
 
 const router = createBrowserRouter([
   // Public routes
@@ -64,6 +65,10 @@ const router = createBrowserRouter([
       {
         path: "key-results",
         element: <KeyResults />,
+      },
+      {
+        path: "missions",
+        element: <Missions />
       },
       {
         path: "teams",

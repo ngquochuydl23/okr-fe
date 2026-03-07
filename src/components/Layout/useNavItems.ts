@@ -6,6 +6,7 @@ import {
 import { RiTeamLine } from "react-icons/ri";
 import { HiOutlineFlag } from "react-icons/hi";
 import type { NavItem } from "./NavigationItem";
+import { MdOutlineRocketLaunch } from "react-icons/md";
 
 export const useNavItems = (isAdmin: boolean): NavItem[] => {
   return useMemo(() => {
@@ -23,6 +24,7 @@ export const useNavItems = (isAdmin: boolean): NavItem[] => {
         ],
       },
       { path: "/key-results", label: "Key Results", icon: HiOutlineFlag },
+      { path: "/missions", label: "Missions", icon: MdOutlineRocketLaunch },
       { path: "/teams", label: "Teams", icon: RiTeamLine },
     ];
 
