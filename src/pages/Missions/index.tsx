@@ -1,4 +1,5 @@
 import MissionCard from "@/components/missions/MissionCard";
+import Pagination from "@/components/Pagination";
 import { Button, Flex, Grid, Heading, Select, TextField } from "@radix-ui/themes";
 import { TbPlus, TbSearch } from "react-icons/tb";
 
@@ -79,6 +80,13 @@ const Page = () => {
           isCompleted={true}
           percentage={100} />
       </Grid>
+      <Pagination
+        page={1}
+        pageSize={10}
+        total={100}
+        onPageChange={() => { }}
+        onPageSizeChange={() => { }}
+      />
     </div>
   )
 }
