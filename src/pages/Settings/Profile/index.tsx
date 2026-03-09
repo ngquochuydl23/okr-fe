@@ -1,8 +1,6 @@
 import { useState } from "react";
 import { useForm, Controller } from "react-hook-form";
 import {
-  Card,
-  Heading,
   Text,
   Flex,
   Button,
@@ -11,8 +9,10 @@ import {
   Avatar as RadixAvatar,
   Separator,
   Callout,
+  Grid,
+  Box,
 } from "@radix-ui/themes";
-import { FiUpload } from "react-icons/fi";
+import { FiCamera, FiUser, FiMail, FiPhone, FiBriefcase, FiMapPin } from "react-icons/fi";
 import { IoCheckmarkCircle } from "react-icons/io5";
 import "./profile-page.scss";
 import { useAppSelector } from "@/store/hooks";
@@ -40,7 +40,7 @@ export default function ProfilePage() {
     formState: { errors, isSubmitting },
     reset,
   } = useForm<ProfileFormData>({
-    mode: "onBlur", // Validate on blur
+    mode: "onBlur",
     defaultValues: {
       fullName: user?.name || "Nguyễn Quốc Huy",
       email: user?.email || "huy.nguyen@hdbank.com",
@@ -65,9 +65,8 @@ export default function ProfilePage() {
 
   const onSubmit = async (data: ProfileFormData) => {
     try {
-      // TODO: Implement API call to save profile
       console.log("Saving profile:", data);
-      await new Promise((resolve) => setTimeout(resolve, 1000)); // Simulate API call
+      await new Promise((resolve) => setTimeout(resolve, 1000));
       setShowSuccess(true);
       setTimeout(() => setShowSuccess(false), 3000);
     } catch (error) {
@@ -81,19 +80,13 @@ export default function ProfilePage() {
 
   return (
     <div className="profile-page">
-      <Flex justify="between" align="center" mb="5">
-        <div>
-          <Heading size="6" mb="1">
-            Profile Settings
-          </Heading>
-          <Text color="gray" size="2">
-            Manage your personal information and preferences
-          </Text>
-        </div>
-      </Flex>
+      <Box mb="5">
+        <h4 className="page-title">Profile Settings</h4>
+        <Text size="2" color="gray">Manage your personal information and preferences</Text>
+      </Box>
 
       {showSuccess && (
-        <Callout.Root color="green" mb="4">
+        <Callout.Root color="green" mb="4" variant="surface">
           <Callout.Icon>
             <IoCheckmarkCircle />
           </Callout.Icon>
@@ -102,278 +95,244 @@ export default function ProfilePage() {
       )}
 
       <form onSubmit={handleSubmit(onSubmit)}>
-        <Flex gap="4" direction={{ initial: "column", md: "row" }}>
-          {/* Avatar Section */}
-          <Card className="profile-avatar-card">
-            <Flex direction="column" align="center" gap="4">
-              <Controller
-                name="fullName"
-                control={control}
-                render={({ field }) => (
-                  <RadixAvatar
-                    size="9"
-                    src={avatarUrl}
-                    fallback={field.value
-                      .split(" ")
-                      .map((n) => n[0])
-                      .join("")}
-                    radius="full"
+        <Grid columns={{ initial: "1", md: "260px 1fr" }} gap="5">
+          {/* Sidebar */}
+          <Flex direction="column" gap="3">
+            <Box className="profile-sidebar">
+              <Flex direction="column" align="center" gap="3" p="5">
+                <Box position="relative" className="avatar-container">
+                  <Controller
+                    name="fullName"
+                    control={control}
+                    render={({ field }) => (
+                      <RadixAvatar
+                        size="8"
+                        src={avatarUrl}
+                        fallback={field.value.split(" ").map((n) => n[0]).join("")}
+                        radius="full"
+                        className="profile-avatar"
+                      />
+                    )}
                   />
-                )}
-              />
-              <Controller
-                name="fullName"
-                control={control}
-                render={({ field }) => (
-                  <Flex direction="column" align="center" gap="2">
-                    <Text size="2" weight="medium" align="center">
-                      {field.value}
-                    </Text>
-                  </Flex>
-                )}
-              />
-              <Controller
-                name="jobTitle"
-                control={control}
-                render={({ field }) => (
-                  <Text size="1" color="gray" align="center">
-                    {field.value}
-                  </Text>
-                )}
-              />
-              <label htmlFor="avatar-upload" className="upload-avatar-btn">
-                <input
-                  id="avatar-upload"
-                  type="file"
-                  accept="image/*"
-                  onChange={handleAvatarChange}
-                  style={{ display: "none" }}
-                />
-                <Button size="2" variant="soft" type="button" style={{ cursor: "pointer" }}>
-                  <FiUpload size={16} />
-                  Change Avatar
-                </Button>
-              </label>
-            </Flex>
-          </Card>
+                  <label htmlFor="avatar-upload" className="avatar-overlay">
+                    <input
+                      id="avatar-upload"
+                      type="file"
+                      accept="image/*"
+                      onChange={handleAvatarChange}
+                      style={{ display: "none" }}
+                    />
+                    <Flex align="center" justify="center" className="camera-icon">
+                      <FiCamera size={14} color="white" />
+                    </Flex>
+                  </label>
+                </Box>
 
-        {/* Form Section */}
-          <Card style={{ flex: 1 }}>
-            <Flex direction="column" gap="4">
-              <div>
-                <Heading size="4" mb="3">
-                  Personal Information
-                </Heading>
-                <Separator size="4" mb="4" />
-              </div>
-
-              <Flex direction="column" gap="4">
-                <Controller
-                  name="fullName"
-                  control={control}
-                  rules={{
-                    required: "Full name is required",
-                    minLength: {
-                      value: 2,
-                      message: "Name must be at least 2 characters",
-                    },
-                  }}
-                  render={({ field }) => (
-                    <label>
-                      <Text size="2" weight="medium" mb="2" as="div">
-                        Full Name <Text color="red">*</Text>
-                      </Text>
-                      <TextField.Root
-                        size="3"
-                        {...field}
-                        placeholder="Enter your full name"
-                        color={errors.fullName ? "red" : undefined}
-                      />
-                      {errors.fullName && (
-                        <Text size="1" color="red" mt="1">
-                          {errors.fullName.message}
-                        </Text>
-                      )}
-                    </label>
-                  )}
-                />
-
-                <Controller
-                  name="email"
-                  control={control}
-                  rules={{
-                    required: "Email is required",
-                    pattern: {
-                      value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-                      message: "Invalid email address",
-                    },
-                  }}
-                  render={({ field }) => (
-                    <label>
-                      <Text size="2" weight="medium" mb="2" as="div">
-                        Email <Text color="red">*</Text>
-                      </Text>
-                      <TextField.Root
-                        size="3"
-                        type="email"
-                        {...field}
-                        placeholder="Enter your email"
-                        color={errors.email ? "red" : undefined}
-                      />
-                      {errors.email && (
-                        <Text size="1" color="red" mt="1">
-                          {errors.email.message}
-                        </Text>
-                      )}
-                    </label>
-                  )}
-                />
-
-                <Controller
-                  name="phone"
-                  control={control}
-                  rules={{
-                    pattern: {
-                      value: /^[+]?[(]?[0-9]{1,4}[)]?[-\s.]?[(]?[0-9]{1,4}[)]?[-\s.]?[0-9]{1,9}$/,
-                      message: "Invalid phone number",
-                    },
-                  }}
-                  render={({ field }) => (
-                    <label>
-                      <Text size="2" weight="medium" mb="2" as="div">
-                        Phone Number
-                      </Text>
-                      <TextField.Root
-                        size="3"
-                        type="tel"
-                        {...field}
-                        placeholder="Enter your phone number"
-                        color={errors.phone ? "red" : undefined}
-                      />
-                      {errors.phone && (
-                        <Text size="1" color="red" mt="1">
-                          {errors.phone.message}
-                        </Text>
-                      )}
-                    </label>
-                  )}
-                />
-
-                <Flex gap="3">
+                <Flex direction="column" align="center" gap="1">
+                  <Controller
+                    name="fullName"
+                    control={control}
+                    render={({ field }) => (
+                      <Text size="4" weight="bold" align="center">{field.value}</Text>
+                    )}
+                  />
                   <Controller
                     name="jobTitle"
                     control={control}
-                    rules={{
-                      required: "Job title is required",
-                    }}
                     render={({ field }) => (
-                      <label style={{ flex: 1 }}>
-                        <Text size="2" weight="medium" mb="2" as="div">
-                          Job Title <Text color="red">*</Text>
-                        </Text>
-                        <TextField.Root
-                          size="3"
-                          {...field}
-                          placeholder="Enter your job title"
-                          color={errors.jobTitle ? "red" : undefined}
-                        />
-                        {errors.jobTitle && (
-                          <Text size="1" color="red" mt="1">
-                            {errors.jobTitle.message}
-                          </Text>
-                        )}
-                      </label>
+                      <Text size="2" color="gray" align="center">{field.value}</Text>
                     )}
                   />
-
                   <Controller
-                    name="department"
+                    name="email"
                     control={control}
-                    rules={{
-                      required: "Department is required",
-                    }}
                     render={({ field }) => (
-                      <label style={{ flex: 1 }}>
-                        <Text size="2" weight="medium" mb="2" as="div">
-                          Department <Text color="red">*</Text>
-                        </Text>
-                        <TextField.Root
-                          size="3"
-                          {...field}
-                          placeholder="Enter your department"
-                          color={errors.department ? "red" : undefined}
-                        />
-                        {errors.department && (
-                          <Text size="1" color="red" mt="1">
-                            {errors.department.message}
-                          </Text>
-                        )}
-                      </label>
+                      <Text size="1" color="gray" align="center">{field.value}</Text>
                     )}
                   />
                 </Flex>
 
-                <Controller
-                  name="location"
-                  control={control}
-                  render={({ field }) => (
-                    <label>
-                      <Text size="2" weight="medium" mb="2" as="div">
-                        Location
-                      </Text>
-                      <TextField.Root
-                        size="3"
-                        {...field}
-                        placeholder="Enter your location"
-                      />
-                    </label>
-                  )}
-                />
+                <Separator size="4" />
 
+                <Flex direction="column" gap="2" width="100%">
+                  <Controller
+                    name="department"
+                    control={control}
+                    render={({ field }) => (
+                      <Flex align="center" gap="2" className="info-row">
+                        <FiBriefcase size={14} className="info-icon" />
+                        <Text size="2" color="gray">{field.value}</Text>
+                      </Flex>
+                    )}
+                  />
+                  <Controller
+                    name="location"
+                    control={control}
+                    render={({ field }) => (
+                      <Flex align="center" gap="2" className="info-row">
+                        <FiMapPin size={14} className="info-icon" />
+                        <Text size="2" color="gray">{field.value}</Text>
+                      </Flex>
+                    )}
+                  />
+                  <Controller
+                    name="phone"
+                    control={control}
+                    render={({ field }) => (
+                      <Flex align="center" gap="2" className="info-row">
+                        <FiPhone size={14} className="info-icon" />
+                        <Text size="2" color="gray">{field.value}</Text>
+                      </Flex>
+                    )}
+                  />
+                </Flex>
+
+                <Button size="2" variant="soft" style={{ width: "100%" }} asChild>
+                  <label htmlFor="avatar-upload" style={{ cursor: "pointer" }}>
+                    <FiCamera size={14} /> Change Photo
+                  </label>
+                </Button>
+              </Flex>
+            </Box>
+          </Flex>
+
+          {/* Form */}
+          <Flex direction="column" gap="4">
+            {/* Personal Information */}
+            <Box className="form-card">
+              <Box className="form-card-header">
+                <Flex align="center" gap="2">
+                  <FiUser className="section-icon" size={15} />
+                  <Text size="3" weight="bold">Personal Information</Text>
+                </Flex>
+              </Box>
+              <Box className="form-card-body">
+                <Grid columns={{ initial: "1", sm: "2" }} gap="4">
+                  <Controller
+                    name="fullName"
+                    control={control}
+                    rules={{ required: "Full name is required", minLength: { value: 2, message: "Min 2 chars" } }}
+                    render={({ field }) => (
+                      <Box>
+                        <Text as="div" size="2" mb="1" weight="medium">Full Name <Text color="red">*</Text></Text>
+                        <TextField.Root size="2" {...field} placeholder="John Doe" color={errors.fullName ? "red" : undefined}>
+                          <TextField.Slot><FiUser size={13} /></TextField.Slot>
+                        </TextField.Root>
+                        {errors.fullName && <Text color="red" size="1">{errors.fullName.message}</Text>}
+                      </Box>
+                    )}
+                  />
+                  <Controller
+                    name="email"
+                    control={control}
+                    rules={{ required: "Email is required", pattern: { value: /^\S+@\S+$/i, message: "Invalid email" } }}
+                    render={({ field }) => (
+                      <Box>
+                        <Text as="div" size="2" mb="1" weight="medium">Email <Text color="red">*</Text></Text>
+                        <TextField.Root size="2" {...field} placeholder="john@example.com" color={errors.email ? "red" : undefined}>
+                          <TextField.Slot><FiMail size={13} /></TextField.Slot>
+                        </TextField.Root>
+                        {errors.email && <Text color="red" size="1">{errors.email.message}</Text>}
+                      </Box>
+                    )}
+                  />
+                  <Controller
+                    name="phone"
+                    control={control}
+                    render={({ field }) => (
+                      <Box>
+                        <Text as="div" size="2" mb="1" weight="medium">Phone Number</Text>
+                        <TextField.Root size="2" {...field} placeholder="+1 234 567 890">
+                          <TextField.Slot><FiPhone size={13} /></TextField.Slot>
+                        </TextField.Root>
+                      </Box>
+                    )}
+                  />
+                  <Controller
+                    name="location"
+                    control={control}
+                    render={({ field }) => (
+                      <Box>
+                        <Text as="div" size="2" mb="1" weight="medium">Location</Text>
+                        <TextField.Root size="2" {...field} placeholder="City, Country">
+                          <TextField.Slot><FiMapPin size={13} /></TextField.Slot>
+                        </TextField.Root>
+                      </Box>
+                    )}
+                  />
+                </Grid>
+              </Box>
+            </Box>
+
+            {/* Professional Information */}
+            <Box className="form-card">
+              <Box className="form-card-header">
+                <Flex align="center" gap="2">
+                  <FiBriefcase className="section-icon" size={15} />
+                  <Text size="3" weight="bold">Professional Information</Text>
+                </Flex>
+              </Box>
+              <Box className="form-card-body">
+                <Grid columns={{ initial: "1", sm: "2" }} gap="4">
+                  <Controller
+                    name="jobTitle"
+                    control={control}
+                    rules={{ required: "Job title is required" }}
+                    render={({ field }) => (
+                      <Box>
+                        <Text as="div" size="2" mb="1" weight="medium">Job Title <Text color="red">*</Text></Text>
+                        <TextField.Root size="2" {...field} placeholder="Software Engineer" color={errors.jobTitle ? "red" : undefined} />
+                        {errors.jobTitle && <Text color="red" size="1">{errors.jobTitle.message}</Text>}
+                      </Box>
+                    )}
+                  />
+                  <Controller
+                    name="department"
+                    control={control}
+                    rules={{ required: "Department is required" }}
+                    render={({ field }) => (
+                      <Box>
+                        <Text as="div" size="2" mb="1" weight="medium">Department <Text color="red">*</Text></Text>
+                        <TextField.Root size="2" {...field} placeholder="Engineering" color={errors.department ? "red" : undefined} />
+                        {errors.department && <Text color="red" size="1">{errors.department.message}</Text>}
+                      </Box>
+                    )}
+                  />
+                </Grid>
+              </Box>
+            </Box>
+
+            {/* Bio */}
+            <Box className="form-card">
+              <Box className="form-card-header">
+                <Text size="3" weight="bold">Bio</Text>
+              </Box>
+              <Box className="form-card-body">
                 <Controller
                   name="bio"
                   control={control}
-                  rules={{
-                    maxLength: {
-                      value: 500,
-                      message: "Bio must be less than 500 characters",
-                    },
-                  }}
+                  rules={{ maxLength: { value: 500, message: "Max 500 chars" } }}
                   render={({ field }) => (
-                    <label>
-                      <Text size="2" weight="medium" mb="2" as="div">
-                        Bio
-                      </Text>
-                      <TextArea
-                        size="3"
-                        {...field}
-                        placeholder="Tell us about yourself"
-                        rows={4}
-                        color={errors.bio ? "red" : undefined}
-                      />
-                      {errors.bio && (
-                        <Text size="1" color="red" mt="1">
-                          {errors.bio.message}
-                        </Text>
-                      )}
-                    </label>
+                    <Box>
+                      <TextArea size="2" {...field} placeholder="Tell us a little bit about yourself..." rows={4} style={{ resize: "vertical" }} />
+                      <Flex justify="end" mt="1"><Text size="1" color="gray">{field.value?.length || 0}/500</Text></Flex>
+                      {errors.bio && <Text color="red" size="1">{errors.bio.message}</Text>}
+                    </Box>
                   )}
                 />
-              </Flex>
+              </Box>
+            </Box>
 
-              <Separator size="4" />
-
-              <Flex gap="3" justify="end">
-                <Button variant="soft" color="gray" size="3" type="button" onClick={handleCancel}>
-                  Cancel
-                </Button>
-                <Button size="3" type="submit" disabled={isSubmitting}>
-                  {isSubmitting ? "Saving..." : "Save Changes"}
-                </Button>
-              </Flex>
+            <Flex gap="3" justify="end">
+              <Button variant="soft" color="gray" size="2" type="button" onClick={handleCancel}>
+                Cancel
+              </Button>
+              <Button size="2" type="submit" disabled={isSubmitting}>
+                {isSubmitting ? "Saving..." : "Save Changes"}
+              </Button>
             </Flex>
-          </Card>
-        </Flex>
+          </Flex>
+        </Grid>
       </form>
     </div>
   );

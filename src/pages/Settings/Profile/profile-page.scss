@@ -1,27 +1,90 @@
+@use '../../../styles/colors' as *;
+
 .profile-page {
-  max-width: 1200px;
-  
-  .profile-avatar-card {
-    padding: 2rem;
-    width: 100%;
-    max-width: 320px;
-    height: fit-content;
+  width: 100%;
+
+  .page-title {
+    font-size: 1.125rem;
+    font-weight: 700;
+    color: var(--gray-12);
+    margin: 0 0 4px 0;
   }
 
-  .upload-avatar-btn {
-    width: 100%;
+  // Sidebar card — white on gray page bg creates natural separation
+  .profile-sidebar {
+    background-color: #ffffff;
+    border-radius: var(--radius-3);
     
-    button {
-      width: 100%;
-      pointer-events: none;
+
+    .info-row {
+      .info-icon {
+        color: var(--gray-9);
+        flex-shrink: 0;
+      }
+    }
+  }
+
+  .avatar-container {
+    position: relative;
+    width: fit-content;
+
+    .profile-avatar {
+      border: 3px solid #ffffff;
+      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.10);
+    }
+
+    .avatar-overlay {
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      background-color: var(--gray-12);
+      border-radius: 50%;
+      width: 28px;
+      height: 28px;
+      cursor: pointer;
+      border: 2px solid #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 2;
+
+      &:hover {
+        background-color: var(--gray-10);
+      }
+
+      .camera-icon {
+        width: 100%;
+        height: 100%;
+      }
+    }
+  }
+
+  // Form cards — no border, white on page bg + header tint for emphasis
+  .form-card {
+    background-color: #ffffff;
+    border-radius: var(--radius-3);
+    overflow: hidden;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+
+    &-header {
+      padding: 10px 16px;
+      background-color: $primary-50; // light brand blue tint (#E8EEFA)
+
+      .section-icon {
+        color: var(--color-primary-500);
+      }
+    }
+
+    &-body {
+      padding: 16px;
     }
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 900px) {
   .profile-page {
-    .profile-avatar-card {
-      max-width: 100%;
+    .profile-sidebar {
+      width: 100%;
     }
   }
 }
