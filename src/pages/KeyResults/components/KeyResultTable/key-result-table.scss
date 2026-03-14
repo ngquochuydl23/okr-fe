@@ -1,0 +1,107 @@
+.key-result-table {
+  &__toolbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 16px;
+    margin-top: 16px;
+    flex-wrap: wrap;
+  }
+
+  &__filters {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    flex-wrap: wrap;
+    flex: 1;
+    min-width: 0;
+  }
+
+  &__search {
+    width: 300px;
+    min-width: 180px;
+  }
+
+  &__table-wrapper {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  &__col-dueDate,
+  &__col-owner {
+    white-space: nowrap;
+  }
+
+  &__col-title {
+    max-width: 350px;
+  }
+  
+  &__col-objectiveTitle {
+    max-width: 200px;
+  }
+
+  &__mobile-filter-btn {
+    display: none;
+  }
+
+  &__desktop-filters {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+
+    .key-result-table__filters-form {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+    }
+  }
+  
+  &__title-text {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    
+    // On mobile/tablet, wrap text
+    @media (max-width: 1024px) {
+      white-space: normal;
+      overflow: visible;
+      word-break: break-word; // Prevent horizontal scroll on very long words
+      min-width: 150px;
+    }
+  }
+}
+
+// Tablet breakpoint
+@media (max-width: 1024px) {
+  .key-result-table {
+    &__search {
+      width: 100%; // Will be controlled by flex box
+      flex: 7; // 70%
+    }
+  
+    &__mobile-filter-btn {
+      display: block; // Show filter button on mobile/tablet
+      flex: 3; // 30%
+    }
+
+    &__desktop-filters {
+      display: none;
+    }
+
+    &__col-title {
+      min-width: 250px; // Span a little bit
+      max-width: 300px;
+    }
+  }
+}
+
+// Mobile breakpoint
+@media (max-width: 768px) {
+  .key-result-table {
+    &__toolbar {
+      flex-direction: column;
+      align-items: stretch;
+    }
+  }
+}
