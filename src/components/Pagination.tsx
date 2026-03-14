@@ -1,6 +1,7 @@
 import { useMemo } from "react";
 import { Text, Flex, Button, Select } from "@radix-ui/themes";
 import { TbChevronLeft, TbChevronRight } from "react-icons/tb";
+import "./pagination.scss";
 
 export interface PaginationProps {
   page: number;
@@ -53,8 +54,8 @@ export default function Pagination({
   }, [page, totalPages]);
 
   return (
-    <Flex justify="between" align="center" mt="4" px="2">
-      <Flex gap="3" align="center">
+    <div className="pagination">
+      <div className="pagination__info">
         <Text size="2" color="gray">
           Showing {from} - {to} of {total} results
         </Text>
@@ -71,8 +72,8 @@ export default function Pagination({
             ))}
           </Select.Content>
         </Select.Root>
-      </Flex>
-      <Flex gap="1" align="center">
+      </div>
+      <div className="pagination__pages">
         <Button
           variant="ghost"
           size="2"
@@ -85,12 +86,13 @@ export default function Pagination({
         </Button>
         {pages.map((p) =>
           typeof p === "string" ? (
-            <Text key={p} size="2" color="gray" style={{ minWidth: 32, textAlign: "center", letterSpacing: 2 }}>
+            <Text key={p} size="2" color="gray" className="pagination__page-ellipsis" style={{ minWidth: 32, textAlign: "center", letterSpacing: 2 }}>
               ...
             </Text>
           ) : (
             <Button
               key={p}
+              className="pagination__page-btn--numbered"
               variant={p === page ? "soft" : "soft"}
               color={p === page ? undefined : "gray"}
               size="2"
@@ -111,7 +113,7 @@ export default function Pagination({
           Next
           <TbChevronRight size={16} />
         </Button>
-      </Flex>
-    </Flex>
+      </div>
+    </div>
   );
 }

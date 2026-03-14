@@ -15,7 +15,7 @@ $bp-desktop: 1024px;
   }
 
   @media (min-width: $bp-desktop) {
-    display: none !important;
+    display: none;
   }
 }
 
