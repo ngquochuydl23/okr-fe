@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Dialog, Flex, Badge, Text, Progress, Avatar, Box, IconButton, Separator, Tooltip, Button, TextField, DataList, Code } from "@radix-ui/themes";
+import { Flex, Badge, Text, Progress, Avatar, Box, IconButton, Separator, Tooltip, Button, TextField, DataList } from "@radix-ui/themes";
 import { TbX, TbPencil, TbSend, TbMoodSmile, TbTargetArrow } from "react-icons/tb";
 import { HiOutlineFlag } from "react-icons/hi";
 import type { Descendant } from "slate";
@@ -155,10 +155,6 @@ const ObjectiveDetailPanel = ({ objective, color, onSaveDescription }: Objective
   }, [open, objective]);
 
   if (!objective) return null;
-
-  const handleCopyId = () => {
-    navigator.clipboard.writeText(objective.id);
-  };
 
   const handleStartEditing = () => {
     setIsEditingDesc(true);

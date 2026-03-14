@@ -16,6 +16,7 @@ export default function SupportingObjectives() {
       },
       owner: { id: "u1", fullName: "Nguyen Quoc Huy", avatar: "" },
       dueDate: "Q1 2026",
+      createdAt: "2026-01-01",
       keyResults: [
         { id: "kr-1-1", title: "Migrate 3 legacy services to cloud", progress: 80, status: "On Track", owner: "Nguyen Quoc Huy", dueDate: "Q1 2026" },
         { id: "kr-1-2", title: "Achieve 99.9% uptime on migrated services", progress: 60, status: "On Track", owner: "Nguyen Quoc Huy", dueDate: "Q1 2026" },
@@ -33,6 +34,7 @@ export default function SupportingObjectives() {
       },
       owner: { id: "u1", fullName: "Nguyen Quoc Huy", avatar: "" },
       dueDate: "Q2 2026",
+      createdAt: "2026-03-01",
       keyResults: [
         { id: "kr-2-1", title: "Document 100% of public API endpoints", progress: 50, status: "On Track", owner: "Nguyen Quoc Huy", dueDate: "Q2 2026" },
         { id: "kr-2-2", title: "Publish interactive API playground", progress: 40, status: "At Risk", owner: "Nguyen Quoc Huy", dueDate: "Q2 2026" },
@@ -50,6 +52,7 @@ export default function SupportingObjectives() {
       },
       owner: { id: "u1", fullName: "Nguyen Quoc Huy", avatar: "" },
       dueDate: "Q1 2026",
+      createdAt: "2026-06-01",
       keyResults: [
         { id: "kr-3-1", title: "Achieve 80% code coverage on critical paths", progress: 25, status: "At Risk", owner: "Nguyen Quoc Huy", dueDate: "Q1 2026" },
         { id: "kr-3-2", title: "Set up CI/CD pipeline with automated tests", progress: 35, status: "On Track", owner: "Nguyen Quoc Huy", dueDate: "Q1 2026" },

@@ -85,7 +85,6 @@ export default function ObjectiveTable({
 }: ObjectiveTableProps) {
   const [expandedIds, setExpandedIds] = useState<Set<string>>(new Set());
   const [searchTerm, setSearchTerm] = useState("");
-  const [debouncedSearch, setDebouncedSearch] = useState("");
   const [selectedObjective, setSelectedObjective] = useState<Objective | null>(null);
   const [detailOpen, setDetailOpen] = useState(false);
   const [filterOpen, setFilterOpen] = useState(false);

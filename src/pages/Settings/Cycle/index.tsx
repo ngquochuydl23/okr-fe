@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import {
   Box,
   Button,
-  Card,
   Dialog,
   Flex,
   Heading,
@@ -11,7 +10,7 @@ import {
   Text,
   TextField,
 } from "@radix-ui/themes";
-import { MagnifyingGlassIcon, MixerHorizontalIcon, PlusIcon, Pencil1Icon, TrashIcon } from "@radix-ui/react-icons";
+import { MagnifyingGlassIcon, MixerHorizontalIcon, PlusIcon } from "@radix-ui/react-icons";
 import { cycleService } from "@/services/cycleService";
 import type { CycleDTO } from "@/types/cycle";
 import { useForm } from "react-hook-form";

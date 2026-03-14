@@ -1,5 +1,5 @@
 import { useMemo } from "react";
-import { Text, Flex, Button, Select } from "@radix-ui/themes";
+import { Text, Button, Select } from "@radix-ui/themes";
 import { TbChevronLeft, TbChevronRight } from "react-icons/tb";
 import "./pagination.scss";
 

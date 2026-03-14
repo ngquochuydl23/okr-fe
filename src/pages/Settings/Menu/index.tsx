@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
-import { Card, Flex, Heading, Text, Grid } from "@radix-ui/themes";
-import { RiSettings3Line, RiTeamLine } from "react-icons/ri";
+import { Flex, Heading, Text, Grid } from "@radix-ui/themes";
+import { RiTeamLine } from "react-icons/ri";
 import { CgProfile } from "react-icons/cg";
 import { IoCalendarOutline } from "react-icons/io5";
 import { TbRulerMeasure } from "react-icons/tb";
