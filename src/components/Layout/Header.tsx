@@ -1,12 +1,13 @@
 import { IconButton, Popover, Flex } from "@radix-ui/themes";
 import { MdNotificationsNone } from "react-icons/md";
-import { RiArrowDownSLine } from "react-icons/ri";
+import { RiArrowDownSLine, RiMenuLine } from "react-icons/ri";
 import { CgProfile } from "react-icons/cg";
 import { BiLogOut } from "react-icons/bi";
 import { Avatar } from "../Avatar";
 import WorkspaceDetailDialog from "../dialogs/WorkspaceDetailDialog";
 
 interface HeaderProps {
+  onMenuClick: () => void;
   onNotificationClick: () => void;
   onProfileClick: () => void;
   onLogoutClick: () => void;
@@ -15,6 +16,7 @@ interface HeaderProps {
 }
 
 export const Header = ({
+  onMenuClick,
   onNotificationClick,
   onProfileClick,
   onLogoutClick,
@@ -23,19 +25,24 @@ export const Header = ({
 }: HeaderProps) => {
   return (
     <div className="main-section-header">
-      <div className="workspace-header">
-        <img
-          className="workspace-logo"
-          src="https://companieslogo.com/img/orig/MAERSK-B.CO-cdb8c805.png?t=1720244492"
-          alt="Workspace Logo"
-        />
-        <div>
-          <WorkspaceDetailDialog
-            open={openWorkspaceDialog}
-            onOpenChange={onWorkspaceDialogChange}
-            trigger={<div className="workspace-name">Maersk</div>}
+      <div style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
+        <IconButton variant="ghost" className="hamburger-btn" onClick={onMenuClick}>
+          <RiMenuLine size={22} color="var(--gray-12)" />
+        </IconButton>
+        <div className="workspace-header">
+          <img
+            className="workspace-logo"
+            src="https://companieslogo.com/img/orig/MAERSK-B.CO-cdb8c805.png?t=1720244492"
+            alt="Workspace Logo"
           />
-          <div className="vision-name">Integrated Container Logistics</div>
+          <div>
+            <WorkspaceDetailDialog
+              open={openWorkspaceDialog}
+              onOpenChange={onWorkspaceDialogChange}
+              trigger={<div className="workspace-name">Maersk</div>}
+            />
+            <div className="vision-name">Integrated Container Logistics</div>
+          </div>
         </div>
       </div>
       <div className="right">

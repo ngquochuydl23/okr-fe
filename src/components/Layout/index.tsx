@@ -1,4 +1,4 @@
-import { useState, useMemo } from "react";
+import { useState, useMemo, useCallback, useEffect } from "react";
 import { Outlet, Link, useLocation, useNavigate } from "react-router-dom";
 import clsx from "clsx";
 import { RiSettings3Line } from "react-icons/ri";
@@ -13,6 +13,8 @@ import { WorkspacesList } from "./WorkspacesList";
 import { Header } from "./Header";
 import { useNavItems } from "./useNavItems";
 import "./layout.scss";
+
+const DESKTOP_BREAKPOINT = 1024;
 
 const MOCK_WORKSPACES = [
   { id: "1", name: "IT Department", logo: null, active: true },
@@ -31,9 +33,29 @@ export default function Layout() {
   const location = useLocation();
 
   const [isCollapsed, setIsCollapsed] = useState(false);
+  const [isMobileOpen, setIsMobileOpen] = useState(false);
   const [expandedItems, setExpandedItems] = useState<string[]>([]);
   const [openWorkspaceDialog, setOpenWorkspaceDialog] = useState(false);
   const [openNotificationDrawer, setOpenNotificationDrawer] = useState(false);
+
+  const isDesktop = useCallback(
+    () => window.innerWidth >= DESKTOP_BREAKPOINT,
+    []
+  );
+
+  // Close mobile sidebar on route change
+  useEffect(() => {
+    setIsMobileOpen(false);
+  }, [location.pathname]);
+
+  // Close mobile sidebar on resize to desktop
+  useEffect(() => {
+    const handleResize = () => {
+      if (isDesktop()) setIsMobileOpen(false);
+    };
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, [isDesktop]);
 
   const isAdmin = user?.roles.includes("admin") ?? false;
   const navItems = useNavItems(isAdmin);
@@ -63,11 +85,20 @@ export default function Layout() {
   };
 
   const handleSidebarToggle = () => {
-    setIsCollapsed((prev) => {
-      if (!prev) setExpandedItems([]);
-      return !prev;
-    });
+    if (isDesktop()) {
+      setIsCollapsed((prev) => {
+        if (!prev) setExpandedItems([]);
+        return !prev;
+      });
+    } else {
+      setIsMobileOpen((prev) => {
+        if (prev) setExpandedItems([]);
+        return !prev;
+      });
+    }
   };
+
+  const closeMobileSidebar = () => setIsMobileOpen(false);
 
   const handleLogout = () => {
     dispatch(logout());
@@ -82,7 +113,11 @@ export default function Layout() {
 
   return (
     <div className="layout-container">
-      <div className={clsx("sidebar", { collapse: isCollapsed })}>
+      <div
+        className={clsx("sidebar-overlay", { visible: isMobileOpen })}
+        onClick={closeMobileSidebar}
+      />
+      <div className={clsx("sidebar", { collapse: isCollapsed, "mobile-open": isMobileOpen })}>
         <SidebarHeader isCollapsed={isCollapsed} onToggle={handleSidebarToggle} />
 
         <div className="navigation-container">
@@ -118,6 +153,7 @@ export default function Layout() {
 
       <div className="main-section">
         <Header
+          onMenuClick={handleSidebarToggle}
           onNotificationClick={() => setOpenNotificationDrawer(true)}
           onProfileClick={handleProfile}
           onLogoutClick={handleLogout}
