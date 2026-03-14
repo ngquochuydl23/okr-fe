@@ -25,6 +25,7 @@ const ObjectiveDetailDialog = ({
         <ObjectiveDetailPanel
           objective={objective}
           color={color}
+          onClose={() => onOpenChange(false)}
         />
       </Dialog.Content>
     </Dialog.Root>

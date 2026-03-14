@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import { Flex, Badge, Text, Progress, Avatar, Box, IconButton, Separator, Tooltip, Button, TextField, DataList } from "@radix-ui/themes";
 import { TbX, TbPencil, TbSend, TbMoodSmile, TbTargetArrow } from "react-icons/tb";
 import { HiOutlineFlag } from "react-icons/hi";
@@ -9,6 +9,7 @@ import './objective-detail-panel.scss';
 export interface ObjectiveDetailPanelProps {
   objective: Objective | null;
   color?: string;
+  onClose?: () => void;
   onSaveDescription?: (objectiveId: string, description: string, slateValue: Descendant[]) => Promise<void> | void;
 }
 
@@ -133,13 +134,20 @@ const formatTimeAgo = (dateStr: string) => {
   if (diffDays < 7) return `${diffDays}d ago`;
   return date.toLocaleDateString("en-US", { month: "short", day: "numeric" });
 };
-const ObjectiveDetailPanel = ({ objective, color, onSaveDescription }: ObjectiveDetailPanelProps) => {
+const ObjectiveDetailPanel = ({ objective, color, onClose, onSaveDescription }: ObjectiveDetailPanelProps) => {
   const [isEditingDesc, setIsEditingDesc] = useState(false);
   const [isSaving, setIsSaving] = useState(false);
   const [slateValue, setSlateValue] = useState<Descendant[]>(EMPTY_VALUE);
   const [commentText, setCommentText] = useState("");
   const [activities, setActivities] = useState<Activity[]>(MOCK_ACTIVITIES);
   const [emojiPickerOpenId, setEmojiPickerOpenId] = useState<string | null>(null);
+  const [isScrolled, setIsScrolled] = useState(false);
+  const mainRef = useRef<HTMLDivElement>(null);
+  const bodyRef = useRef<HTMLDivElement>(null);
+
+  const handleScroll = useCallback((e: React.UIEvent<HTMLDivElement>) => {
+    setIsScrolled(e.currentTarget.scrollTop > 20);
+  }, []);
 
   const currentUser = objective?.owner.fullName ?? "";
 
@@ -230,9 +238,14 @@ const ObjectiveDetailPanel = ({ objective, color, onSaveDescription }: Objective
     setEmojiPickerOpenId(null);
   };
   return (
-    <div className="objective-detail__body">
-      <div className="objective-detail__main">
-        <div className="objective-detail__title">
+    <div className="objective-detail__body" ref={bodyRef} onScroll={handleScroll}>
+      <div className="objective-detail__main" ref={mainRef} onScroll={handleScroll}>
+        <div className={`objective-detail__title ${isScrolled ? 'objective-detail__title--scrolled' : ''}`}>
+          {onClose && (
+            <IconButton variant="ghost" size="2" color="gray" onClick={onClose} className="objective-detail__close-btn">
+              <TbX size={18} />
+            </IconButton>
+          )}
           <TbTargetArrow color={color} size={'32px'} />
           <div className="header-title-wrapper">
             {/* Breadcums */}
@@ -370,22 +383,26 @@ const ObjectiveDetailPanel = ({ objective, color, onSaveDescription }: Objective
             <div className="objective-detail__kr-list">
               {objective.keyResults.map((kr, index) => (
                 <div key={kr.id} className="objective-detail__kr-item">
-                  <span className="objective-detail__kr-index">{index + 1}</span>
-                  <HiOutlineFlag size={14} color="var(--gray-9)" style={{ flexShrink: 0 }} />
-                  <Text size="2" className="objective-detail__kr-title" truncate>{kr.title}</Text>
-                  <div className="objective-detail__kr-progress">
-                    <Progress
-                      value={kr.progress}
-                      size="1"
-                      color={getProgressColor(kr.progress) as any}
-                    />
-                    <Text size="1" color="gray" weight="medium">
-                      {kr.progress}%
-                    </Text>
+                  <div className="objective-detail__kr-row-top">
+                    <span className="objective-detail__kr-index">{index + 1}</span>
+                    <HiOutlineFlag size={14} color="var(--gray-9)" style={{ flexShrink: 0 }} />
+                    <Text size="2" className="objective-detail__kr-title" truncate>{kr.title}</Text>
                   </div>
-                  <Badge color={getStatusColor(kr.status) as any} size="1" style={{ flexShrink: 0 }}>
-                    {kr.status}
-                  </Badge>
+                  <div className="objective-detail__kr-row-bottom">
+                    <div className="objective-detail__kr-progress">
+                      <Progress
+                        value={kr.progress}
+                        size="1"
+                        color={getProgressColor(kr.progress) as any}
+                      />
+                      <Text size="1" color="gray" weight="medium">
+                        {kr.progress}%
+                      </Text>
+                    </div>
+                    <Badge color={getStatusColor(kr.status) as any} size="1" style={{ flexShrink: 0 }}>
+                      {kr.status}
+                    </Badge>
+                  </div>
                 </div>
               ))}
             </div>
@@ -397,6 +414,44 @@ const ObjectiveDetailPanel = ({ objective, color, onSaveDescription }: Objective
         </div>
 
         <Separator size="4" mb="4" />
+
+        {/* Mobile-only: Key info before activities */}
+        <div className="objective-detail__mobile-sidebar">
+          <div className="objective-detail__mobile-sidebar-grid">
+            <div className="objective-detail__mobile-sidebar-item">
+              <Text size="1" color="gray" weight="medium">Status</Text>
+              <Badge color={getStatusColor(objective.status) as any} size="2">
+                {objective.status}
+              </Badge>
+            </div>
+            <div className="objective-detail__mobile-sidebar-item">
+              <Text size="1" color="gray" weight="medium">Progress</Text>
+              <Flex align="center" gap="2">
+                <Text size="3" weight="bold" color={getProgressColor(objective.progress) as any}>
+                  {objective.progress}%
+                </Text>
+                <Progress
+                  value={objective.progress}
+                  size="1"
+                  color={getProgressColor(objective.progress) as any}
+                  style={{ width: 60 }}
+                />
+              </Flex>
+            </div>
+            <div className="objective-detail__mobile-sidebar-item">
+              <Text size="1" color="gray" weight="medium">Owner</Text>
+              <Flex align="center" gap="2">
+                <Avatar size="1" radius="full" src={objective.owner.avatar} fallback={objective.owner.fullName.charAt(0)} />
+                <Text size="2" weight="medium">{objective.owner.fullName}</Text>
+              </Flex>
+            </div>
+            <div className="objective-detail__mobile-sidebar-item">
+              <Text size="1" color="gray" weight="medium">Due Date</Text>
+              <Text size="2">{objective.dueDate}</Text>
+            </div>
+          </div>
+          <Separator size="4" my="4" />
+        </div>
 
         {/* Activity */}
         <div className="objective-detail__section">
