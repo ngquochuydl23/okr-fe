@@ -9,7 +9,7 @@
   background: linear-gradient(145deg, rgba(255, 255, 255, 0.74) 0%, rgba(255, 255, 255, 0.52) 100%);
   border: 1px solid rgba(148, 163, 184, 0.24);
   border-radius: 8px;
-  box-shadow: 0 10px 24px rgba(15, 23, 42, 0.07);
+  box-shadow: 0 1px 3px rgba(15, 23, 42, 0.018);
   backdrop-filter: blur(10px) saturate(130%);
   -webkit-backdrop-filter: blur(10px) saturate(130%);
   transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
@@ -19,7 +19,7 @@
   &:hover {
     transform: translateY(-2px);
     border-color: rgba(79, 126, 213, 0.32);
-    box-shadow: 0 16px 34px rgba(15, 23, 42, 0.12);
+    box-shadow: 0 2px 7px rgba(15, 23, 42, 0.03);
   }
 
   &--loading {

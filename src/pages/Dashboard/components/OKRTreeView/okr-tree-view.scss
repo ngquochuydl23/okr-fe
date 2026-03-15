@@ -7,14 +7,14 @@
   padding: 24px;
   position: relative;
   border: 1px solid rgba(148, 163, 184, 0.24);
-  box-shadow: 0 10px 26px rgba(15, 23, 42, 0.07);
+  box-shadow: 0 1px 3px rgba(15, 23, 42, 0.018);
   backdrop-filter: blur(10px) saturate(130%);
   -webkit-backdrop-filter: blur(10px) saturate(130%);
   transition: box-shadow 0.2s ease, border-color 0.2s ease;
 
   &:hover {
     border-color: rgba(79, 126, 213, 0.3);
-    box-shadow: 0 14px 30px rgba(15, 23, 42, 0.1);
+    box-shadow: 0 2px 6px rgba(15, 23, 42, 0.028);
   }
 
   &__wrapper {

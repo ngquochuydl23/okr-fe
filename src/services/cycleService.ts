@@ -7,6 +7,8 @@ let MOCK_CYCLES: CycleDTO[] = [
     name: "Q1 2024",
     description: "First Quarter 2024",
     workspace: { id: "w1", name: "Main Workspace" },
+    startDate: "2024-01-01T00:00:00Z",
+    endDate: "2024-03-31T23:59:59Z",
     createdAt: "2024-01-01T00:00:00Z",
     lastUpdatedAt: "2024-01-01T00:00:00Z",
   },
@@ -15,6 +17,8 @@ let MOCK_CYCLES: CycleDTO[] = [
     name: "Q2 2024",
     description: "Second Quarter 2024",
     workspace: { id: "w1", name: "Main Workspace" },
+    startDate: "2024-04-01T00:00:00Z",
+    endDate: "2024-06-30T23:59:59Z",
     createdAt: "2024-04-01T00:00:00Z",
     lastUpdatedAt: "2024-04-01T00:00:00Z",
   },
@@ -35,6 +39,8 @@ export const cycleService = {
         name: data.name,
         description: data.description,
         workspace: { id: "w1", name: "Main Workspace" }, // Mock workspace
+        startDate: undefined,
+        endDate: undefined,
         createdAt: new Date().toISOString(),
         lastUpdatedAt: new Date().toISOString(),
       };

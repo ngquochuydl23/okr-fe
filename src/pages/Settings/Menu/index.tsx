@@ -3,7 +3,7 @@ import { Flex, Heading, Text, Grid } from "@radix-ui/themes";
 import { RiTeamLine } from "react-icons/ri";
 import { CgProfile } from "react-icons/cg";
 import { IoCalendarOutline } from "react-icons/io5";
-import { TbRulerMeasure } from "react-icons/tb";
+import { TbChevronRight, TbRulerMeasure } from "react-icons/tb";
 import { HiOutlineBuildingOffice2 } from "react-icons/hi2";
 import './setting-menu.scss';
 
@@ -61,39 +61,52 @@ export default function Settings() {
   };
 
   return (
-    <Flex direction="column" gap="4">
-      <div>
-        <Heading size="6" mb="1">
-          Settings
-        </Heading>
-        <Text size="2" color="gray">
-          Configure your workspace preferences and manage your account
-        </Text>
+    <div className="settings-menu">
+      <div className="settings-menu__hero">
+        <div className="settings-menu__hero-copy">
+          <Text className="settings-menu__eyebrow">Workspace Control Center</Text>
+          <Heading size="6">Settings</Heading>
+          <Text size="2" color="gray" className="settings-menu__subtitle">
+            Configure your workspace preferences, account details, and operational modules.
+          </Text>
+        </div>
+
+        <Flex gap="2" className="settings-menu__hero-meta">
+          <div className="settings-menu__pill">5 modules</div>
+          <div className="settings-menu__pill">Role-based access</div>
+        </Flex>
       </div>
 
       <Grid
         columns={{ initial: "1", sm: "2", lg: "3" }}
         gap="4"
-        className="grid-menu"
+        className="settings-menu__grid"
       >
         {settingsCards.map((card) => (
-          <div
+          <button
+            type="button"
             key={card.path}
             className="setting-card"
+            style={{ "--card-accent": card.color } as React.CSSProperties}
             onClick={() => handleCardClick(card.path)}
           >
-            <Flex direction="column" gap="0.5">
-              <Flex align="center" gap="1">
-                <div className="icon-wrap" style={{ background: `${card.color}15` }}>
+            <Flex align="start" gap="3">
+              <div className="setting-card__icon-wrap" style={{ background: `${card.color}15` }}>
                   <card.icon size={24} color={card.color} />
-                </div>
-                <div className="card-title">{card.title}</div>
+              </div>
+
+              <Flex direction="column" gap="1" className="setting-card__content">
+                <div className="setting-card__title">{card.title}</div>
+                <div className="setting-card__desc">{card.description}</div>
               </Flex>
-              <div className="card-desc">{card.description}</div>
+
+              <div className="setting-card__chevron" aria-hidden="true">
+                <TbChevronRight size={18} />
+              </div>
             </Flex>
-          </div>
+          </button>
         ))}
       </Grid>
-    </Flex>
+    </div>
   );
 }

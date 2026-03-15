@@ -173,7 +173,7 @@ export default function ObjectiveTable({
           </Select.Root>
         )}
       />
-      
+
       {type === ObjectiveType.TEAM && (
         <Controller
           name="team"
@@ -223,7 +223,7 @@ export default function ObjectiveTable({
               {renderFilters()}
             </form>
           </div>
-          
+
           <div className="objective-table__mobile-filter-btn">
             <Dialog.Root open={filterOpen} onOpenChange={setFilterOpen}>
               <Dialog.Trigger>

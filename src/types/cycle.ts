@@ -9,6 +9,8 @@ export interface CycleDTO {
   name: string;
   description: string;
   workspace: WorkspaceDTO;
+  startDate?: string; // ISO date string
+  endDate?: string; // ISO date string
   createdAt: string; // ISO date string
   lastUpdatedAt: string; // ISO date string
 }
