@@ -385,7 +385,7 @@ const ObjectiveDetailPanel = ({ objective, color, onClose, onSaveDescription }: 
                 <div key={kr.id} className="objective-detail__kr-item">
                   <div className="objective-detail__kr-row-top">
                     <span className="objective-detail__kr-index">{index + 1}</span>
-                    <HiOutlineFlag size={14} color="var(--gray-9)" style={{ flexShrink: 0 }} />
+                    <HiOutlineFlag size={24} color="var(--gray-9)" style={{ flexShrink: 0 }} />
                     <Text size="2" className="objective-detail__kr-title" truncate>{kr.title}</Text>
                   </div>
                   <div className="objective-detail__kr-row-bottom">

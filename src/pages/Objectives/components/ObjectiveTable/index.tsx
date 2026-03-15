@@ -412,7 +412,7 @@ export default function ObjectiveTable({
                               return (
                                 <Table.Cell key={col.key} style={{ paddingLeft: "48px" }} className={`objective-table__col-${col.key}`}>
                                   <Flex align="center" gap="2">
-                                    <HiOutlineFlag size={14} color="var(--gray-9)" />
+                                    <HiOutlineFlag size={20} color="var(--gray-9)" />
                                     <Text size="2" color="gray" className="objective-table__title-text">{keyResult.title}</Text>
                                   </Flex>
                                 </Table.Cell>

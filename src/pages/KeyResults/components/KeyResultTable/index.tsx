@@ -176,7 +176,7 @@ export default function KeyResultTable({
                       return (
                         <Table.RowHeaderCell key={col.key} className={`key-result-table__col-${col.key}`}>
                           <Flex align="center" gap="2">
-                            <HiOutlineFlag size={14} color="var(--gray-9)" />
+                            <HiOutlineFlag size={20} color="var(--gray-9)" />
                             <Text size="2" color="gray" weight="medium" className="key-result-table__title-text">{kr.title}</Text>
                             <Badge>3 Todos</Badge>
                           </Flex>
