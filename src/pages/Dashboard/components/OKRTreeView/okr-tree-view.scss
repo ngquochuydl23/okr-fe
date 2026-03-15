@@ -2,15 +2,59 @@
   width: 100%;
   display: flex;
   flex-direction: column;
-  background: white;
+  background: linear-gradient(150deg, rgba(255, 255, 255, 0.78) 0%, rgba(255, 255, 255, 0.56) 100%);
   border-radius: 12px;
   padding: 24px;
   position: relative;
-  border: 1px solid $border-light;
-  transition: box-shadow 0.2s ease;
-  margin-top: 2rem;
+  border: 1px solid rgba(148, 163, 184, 0.24);
+  box-shadow: 0 10px 26px rgba(15, 23, 42, 0.07);
+  backdrop-filter: blur(10px) saturate(130%);
+  -webkit-backdrop-filter: blur(10px) saturate(130%);
+  transition: box-shadow 0.2s ease, border-color 0.2s ease;
+
+  &:hover {
+    border-color: rgba(79, 126, 213, 0.3);
+    box-shadow: 0 14px 30px rgba(15, 23, 42, 0.1);
+  }
+
   &__wrapper {
     height: 500px;
     width: 100%;
+  }
+}
+
+@supports not ((backdrop-filter: blur(1px))) {
+  .okr-tree-view {
+    background: #fff;
+  }
+}
+
+@media (max-width: 1024px) {
+  .okr-tree-view {
+    padding: 20px;
+
+    &__wrapper {
+      height: 420px;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .okr-tree-view {
+    padding: 16px;
+
+    &__wrapper {
+      height: 340px;
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .okr-tree-view {
+    padding: 14px;
+
+    &__wrapper {
+      height: 300px;
+    }
   }
 }

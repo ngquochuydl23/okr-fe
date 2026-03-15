@@ -3,11 +3,14 @@
 .okr-stack-bar {
   display: flex;
   flex-direction: column;
-  background: white;
+  background: linear-gradient(150deg, rgba(255, 255, 255, 0.78) 0%, rgba(255, 255, 255, 0.56) 100%);
   border-radius: 12px;
   padding: 24px;
-  border: 1px solid $border-light;
-  transition: box-shadow 0.2s ease;
+  border: 1px solid rgba(148, 163, 184, 0.24);
+  box-shadow: 0 10px 26px rgba(15, 23, 42, 0.07);
+  backdrop-filter: blur(10px) saturate(130%);
+  -webkit-backdrop-filter: blur(10px) saturate(130%);
+  transition: box-shadow 0.2s ease, border-color 0.2s ease;
   position: relative;
   width: 100%;
   max-width: 100%;
@@ -18,6 +21,9 @@
   }
 
   &:hover {
+    border-color: rgba(79, 126, 213, 0.3);
+    box-shadow: 0 14px 30px rgba(15, 23, 42, 0.1);
+
     .widget-btn {
       z-index: 1;
       position: absolute;
@@ -42,8 +48,13 @@
     height: auto;
     min-height: 300px;
     max-height: 400px;
-    overflow: hidden;
+    overflow-x: auto;
+    overflow-y: hidden;
     box-sizing: border-box;
+
+    canvas {
+      min-width: 620px;
+    }
   }
 
   &__loading {
@@ -94,6 +105,81 @@
     font-size: 14px;
     color: #6b7280;
     margin: 0;
+  }
+}
+
+@supports not ((backdrop-filter: blur(1px))) {
+  .okr-stack-bar {
+    background: #fff;
+  }
+}
+
+@media (max-width: 1024px) {
+  .okr-stack-bar {
+    padding: 20px;
+
+    &__container {
+      min-height: 280px;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .okr-stack-bar {
+    padding: 16px;
+
+    &__title {
+      font-size: 16px;
+      margin-bottom: 16px;
+      padding-right: 42px;
+    }
+
+    &__container {
+      min-height: 250px;
+
+      canvas {
+        min-width: 560px;
+      }
+    }
+
+    &__empty {
+      padding: 36px 16px;
+    }
+
+    &__empty-message {
+      font-size: 14px;
+    }
+
+    &__empty-subtitle {
+      font-size: 13px;
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .okr-stack-bar {
+    padding: 14px;
+
+    &__container {
+      min-height: 220px;
+
+      canvas {
+        min-width: 520px;
+      }
+    }
+  }
+}
+
+@media (hover: none), (pointer: coarse) {
+  .okr-stack-bar {
+    .widget-btn {
+      z-index: 1;
+      position: absolute;
+      right: 10px;
+      top: 10px;
+      display: flex;
+      align-items: center;
+    }
   }
 }
 
