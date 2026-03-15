@@ -63,13 +63,11 @@
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
-    
-    // On mobile/tablet, wrap text
+
+    // On mobile/tablet, allow up to two lines and truncate the rest.
     @media (max-width: 1024px) {
       white-space: normal;
-      overflow: visible;
-      word-break: break-word; // Prevent horizontal scroll on very long words
-      min-width: 150px;
+      min-width: 250px;
     }
   }
 }
