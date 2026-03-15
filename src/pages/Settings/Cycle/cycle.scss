@@ -284,6 +284,10 @@
 
 @media (max-width: 768px) {
   .cycle-management {
+    &__hero {
+      padding: 0.875rem;
+    }
+
     &__stats {
       grid-template-columns: 1fr;
     }
@@ -321,5 +325,13 @@
       display: block;
     }
 
+  }
+}
+
+@media (max-width: 480px) {
+  .cycle-management {
+    &__hero {
+      padding: 0.75rem;
+    }
   }
 }
