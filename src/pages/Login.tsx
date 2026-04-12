@@ -4,9 +4,10 @@ import { Callout } from "@radix-ui/themes";
 import { FcGoogle } from "react-icons/fc";
 import { LayersIcon, BarChartIcon, PersonIcon } from "@radix-ui/react-icons";
 import { useAppDispatch } from "@/store/hooks";
-import { setLoading, loginSuccess, loginFailure } from "@/store/authSlice";
-import type { User } from "@/store/authSlice";
+import { setLoading, loginSuccess, loginFailure } from "@/store/slices/authSlice";
+import { AuthService } from "@/services/auth";
 import "./login.scss";
+import type { LoggingInUserDto } from "@/services/user/dtos";
 
 const features = [
   {
@@ -39,23 +40,7 @@ export default function Login() {
     setError("");
     setLocalLoading(true);
     dispatch(setLoading(true));
-
-    try {
-      await new Promise((resolve) => setTimeout(resolve, 1000));
-      const mockUser: User = {
-        id: "1",
-        email: "user@gmail.com",
-        name: "Demo User",
-        roles: ["user"],
-      };
-
-      dispatch(loginSuccess(mockUser));
-      navigate(from, { replace: true });
-    } catch (err) {
-      setError("Failed to sign in with Google. Please try again.");
-      dispatch(loginFailure());
-      setLocalLoading(false);
-    }
+    await AuthService.loginViaGoogle();
   };
 
   return (

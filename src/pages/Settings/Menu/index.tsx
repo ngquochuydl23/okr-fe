@@ -6,6 +6,7 @@ import { IoCalendarOutline } from "react-icons/io5";
 import { TbChevronRight, TbRulerMeasure } from "react-icons/tb";
 import { HiOutlineBuildingOffice2 } from "react-icons/hi2";
 import './setting-menu.scss';
+import { useTranslation } from "react-i18next";
 
 interface SettingCard {
   title: string;
@@ -17,39 +18,40 @@ interface SettingCard {
 
 export default function Settings() {
   const navigate = useNavigate();
+  const { t } = useTranslation();
 
   const settingsCards: SettingCard[] = [
     {
-      title: "Workspace Settings",
-      description: "Manage workspace information, preferences and configurations",
+      title: t("MODULES.SETTINGS.WORKSPACE_SETTINGS"),
+      description: t("MODULES.SETTINGS.WORKSPACE_SETTINGS_DESCRIPTION"),
       icon: HiOutlineBuildingOffice2,
       path: "/settings/workspace",
       color: "var(--blue-9)",
     },
     {
-      title: "Profile Settings",
-      description: "Update your personal information and account details",
+      title: t("MODULES.SETTINGS.PROFILE_SETTINGS"),
+      description: t("MODULES.SETTINGS.PROFILE_SETTINGS_DESCRIPTION"),
       icon: CgProfile,
       path: "/settings/profile",
       color: "var(--green-9)",
     },
     {
-      title: "Cycle Management",
-      description: "Configure OKR cycles, timelines and review periods",
+      title: t("MODULES.SETTINGS.CYCLE_SETTINGS"),
+      description: t("MODULES.SETTINGS.CYCLE_SETTINGS_DESCRIPTION"),
       icon: IoCalendarOutline,
       path: "/settings/cycles",
       color: "var(--purple-9)",
     },
     {
-      title: "Member Management",
-      description: "Manage team members, roles and permissions",
+      title: t("MODULES.SETTINGS.MEMBER_MANAGEMENT"),
+      description: t("MODULES.SETTINGS.MEMBER_MANAGEMENT_DESCRIPTION"),
       icon: RiTeamLine,
       path: "/settings/members",
       color: "var(--orange-9)",
     },
     {
-      title: "Measure Unit Management",
-      description: "Define and configure measurement units for key results",
+      title: t("MODULES.SETTINGS.MEASURE_UNIT_MANAGEMENT"),
+      description: t("MODULES.SETTINGS.MEASURE_UNIT_MANAGEMENT_DESCRIPTION"),
       icon: TbRulerMeasure,
       path: "/settings/measures",
       color: "var(--cyan-9)",
@@ -64,10 +66,10 @@ export default function Settings() {
     <div className="settings-menu">
       <div className="settings-menu__hero">
         <div className="settings-menu__hero-copy">
-          <Text className="settings-menu__eyebrow">Workspace Control Center</Text>
-          <Heading size="6">Settings</Heading>
+          <Text className="settings-menu__eyebrow">{t("MODULES.SETTINGS.WORKSPACE_CONTROL_CENTER")}</Text>
+          <Heading size="6">{t("MODULES.SETTINGS.TITLE")}</Heading>
           <Text size="2" color="gray" className="settings-menu__subtitle">
-            Configure your workspace preferences, account details, and operational modules.
+            {t("MODULES.SETTINGS.DESCRIPTION")}
           </Text>
         </div>
 
@@ -92,9 +94,8 @@ export default function Settings() {
           >
             <Flex align="start" gap="3">
               <div className="setting-card__icon-wrap" style={{ background: `${card.color}15` }}>
-                  <card.icon size={24} color={card.color} />
+                <card.icon size={24} color={card.color} />
               </div>
-
               <Flex direction="column" gap="1" className="setting-card__content">
                 <div className="setting-card__title">{card.title}</div>
                 <div className="setting-card__desc">{card.description}</div>

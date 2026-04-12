@@ -1,0 +1,113 @@
+{
+  "COMMON": {
+    "BUTTON": {
+      "FILTER": "フィルター",
+      "APPLY": "適用",
+      "CLOSE": "閉じる",
+      "SAVE": "保存",
+      "CANCEL": "キャンセル"
+    }
+  },
+  "COMPONENTS": {
+    "PAGINATION": {
+      "SHOWING_RESULTS": "{{total}} 件中 {{from}} - {{to}} を表示",
+      "ITEMS_PER_PAGE": "{{count}} 件 / ページ",
+      "PREVIOUS": "前へ",
+      "NEXT": "次へ"
+    }
+  },
+  "DIALOG": {
+    "ASK_CREATE_CYCLE": {
+      "NO_ACTIVE_CYCLE_FOUND": "進行中のサイクルが見つかりません",
+      "DESCRIPTION": "ワークスペースに進行中のサイクルがないようです。OKR の設定と追跡を開始するには、サイクルを作成してください。",
+      "GO_TO_SETTINGS": "設定へ移動",
+      "LATER_BUTTON": "後で"
+    }
+  },
+  "HEADER": {
+    "WORKSPACE": "ワークスペース",
+    "LOG_OUT": "ログアウト",
+    "PROFILE": "プロフィール"
+  },
+  "SIDEBAR": {
+    "DASHBOARD": "ダッシュボード",
+    "OBJECTIVES": "目標",
+    "CHILD_OBJECTIVES": {
+      "WORKSPACE": "ワークスペース",
+      "TEAM": "チーム",
+      "PERSONAL": "個人",
+      "SUPPORTING": "支援"
+    },
+    "KEY_RESULTS": "主要成果",
+    "MISSIONS": "ミッション",
+    "TEAMS": "チーム",
+    "SETTINGS": "設定"
+  },
+  "MODULES": {
+    "DASHBOARD": {
+      "PERFORMANCE_SNAPSHOT": "パフォーマンス概要",
+      "SAY_HELLO": "こんにちは、{{name}} さん。こちらがあなたの OKR 健全性の概要です。",
+      "DESCRIPTION": "実行状況のシグナルを追跡し、リスクを早期に検知し、次のアクションに集中できるよう一画面で表示します。",
+      "CURRENT_CYCLE_NAME": "{{cycleName}} サイクル",
+      "CORE_METRICS": "主要指標",
+      "CORE_METRICS_DESCRIPTION": "現在のサイクルにおける上位レベルの数値です。",
+      "FOCUS_AREA": {
+        "FOCUS_NOW": "今注力すべきこと",
+        "N_OKRS_NEED_ATTENTION": "{{count}} 件の OKR に注意が必要です",
+        "ATTENTION_DESCRIPTION": "今週はリスクがあります。担当者を割り当て、障害を取り除く対応を追加してください。",
+        "N_CHECKINS_PENDING": "{{count}} 件のチェックインが保留中です",
+        "CHECKINS_PENDING_DESCRIPTION": "今週のチェックインが未完了です。担当者にフォローしてください",
+        "N_KEYRESULTS_IMPROVED": "{{count}} 件の主要成果が改善しました",
+        "KEYRESULTS_IMPROVED_DESCRIPTION": "プロダクトチームとエンジニアリングチームで良い勢いが出ています。"
+      },
+      "STATUS_AND_TREND": {
+        "TITLE": "ステータスと推移",
+        "DESCRIPTION": "分布状況と週次トレンドの変化を表示します。"
+      }
+    },
+    "SETTINGS": {
+      "WORKSPACE_CONTROL_CENTER": "ワークスペース管理センター",
+      "TITLE": "設定",
+      "DESCRIPTION": "ワークスペースの設定、アカウント情報、運用モジュールを構成します。",
+      "WORKSPACE_SETTINGS": "ワークスペース設定",
+      "WORKSPACE_SETTINGS_DESCRIPTION": "ワークスペース情報、設定、構成を管理します",
+      "PROFILE_SETTINGS": "プロフィール設定",
+      "PROFILE_SETTINGS_DESCRIPTION": "個人情報とアカウント詳細を更新します",
+      "CYCLE_SETTINGS": "サイクル設定",
+      "CYCLE_SETTINGS_DESCRIPTION": "OKR サイクル、タイムライン、レビュー期間を設定します",
+      "MEMBER_MANAGEMENT": "メンバー管理",
+      "MEMBER_MANAGEMENT_DESCRIPTION": "チームメンバー、役割、権限を管理します",
+      "MEASURE_UNIT_MANAGEMENT": "測定単位管理",
+      "MEASURE_UNIT_MANAGEMENT_DESCRIPTION": "主要成果の測定単位を定義し設定します",
+      "CYCLE_MANAGEMENT": {
+        "TITLE": "サイクル管理",
+        "DESCRIPTION": "計画期間を整理し、更新リズムを監視し、目標のタイムラインを揃えましょう。",
+        "TOTAL_CYCLES": "サイクル合計",
+        "PAST_CYCLES": "過去のサイクル",
+        "INCOMING_CYCLES": "今後のサイクル",
+        "CYCLES_LIST": "サイクル一覧",
+        "SEARCH_PLACEHOLDER": "サイクルを検索...",
+        "FILTER_DIALOG": {
+          "FILTER_CYCLES": "サイクルを絞り込む",
+          "FILTER_CYCLES_DESCRIPTION": "ステータスまたは日付範囲でサイクルを絞り込みます。"
+        },
+        "ADD_CYCLE_BUTTON": "サイクルを追加",
+        "ADD_EDIT_CYCLE_DIALOG": {
+          "CREATE_CYCLE_TITLE": "サイクルを作成",
+          "EDIT_CYCLE_TITLE": "サイクルを編集",
+          "CREATE_CYCLE_DESCRIPTION": "ワークスペースに新しいサイクルを追加します。",
+          "EDIT_CYCLE_DESCRIPTION": "サイクルの詳細と設定を更新します。",
+          "NAME_LABEL": "名前",
+          "DESCRIPTION_LABEL": "説明",
+          "DESCRIPTION_PLACEHOLDER": "サイクルの説明"
+        },
+        "COLUMNS": {
+          "NAME": "名前",
+          "DESCRIPTION": "説明",
+          "LAST_UPDATED": "最終更新",
+          "ACTIONS": "操作"
+        }
+      }
+    }
+  }
+}

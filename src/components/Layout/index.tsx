@@ -3,7 +3,7 @@ import { Outlet, Link, useLocation, useNavigate } from "react-router-dom";
 import clsx from "clsx";
 import { RiSettings3Line } from "react-icons/ri";
 import { useAppSelector, useAppDispatch } from "@/store/hooks";
-import { logout } from "@/store/authSlice";
+import { logout } from "@/store/slices/authSlice";
 import { Chatbot } from "../Chatbot";
 import LoadingScreen from "../LoadingScreen";
 import NotificationDrawer from "../NotificationDrawer";
@@ -13,20 +13,17 @@ import { WorkspacesList } from "./WorkspacesList";
 import { Header } from "./Header";
 import { useNavItems } from "./useNavItems";
 import "./layout.scss";
+import { useAsync } from 'react-use';
+import { WorkspaceService } from "@/services/workspace";
+import { setCurrentWorkspace, setCurrentCycle } from "@/store/slices/contextSlice";
+import { CycleService } from "@/services/cycle";
+import AskCreateCycleDialog from "../dialogs/AskCreateCycleDialog";
+import { useTranslation } from "react-i18next";
 
 const DESKTOP_BREAKPOINT = 1024;
 
-const MOCK_WORKSPACES = [
-  { id: "1", name: "IT Department", logo: null, active: true },
-  { id: "2", name: "Digital Banking", logo: null, active: false },
-  { id: "3", name: "Core Banking", logo: null, active: false },
-  { id: "4", name: "Mobile Apps", logo: null, active: false },
-  { id: "5", name: "Risk Management", logo: null, active: false },
-  { id: "6", name: "Customer Service", logo: null, active: false },
-  { id: "7", name: "Data Analytics", logo: null, active: false },
-];
-
 export default function Layout() {
+  const { t } = useTranslation();
   const { user, isLoading } = useAppSelector((state) => state.auth);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
@@ -37,6 +34,7 @@ export default function Layout() {
   const [expandedItems, setExpandedItems] = useState<string[]>([]);
   const [openWorkspaceDialog, setOpenWorkspaceDialog] = useState(false);
   const [openNotificationDrawer, setOpenNotificationDrawer] = useState(false);
+  const [openCreateCycleDialog, setOpenCreateCycleDialog] = useState(false);
 
   const isDesktop = useCallback(
     () => window.innerWidth >= DESKTOP_BREAKPOINT,
@@ -57,9 +55,8 @@ export default function Layout() {
     return () => window.removeEventListener("resize", handleResize);
   }, [isDesktop]);
 
-  const isAdmin = user?.roles.includes("admin") ?? false;
+  const isAdmin = useMemo(() => user?.roles?.includes("admin") || false, [user]);
   const navItems = useNavItems(isAdmin);
-  const displayedWorkspaces = useMemo(() => MOCK_WORKSPACES.slice(0, 5), []);
 
   const isActive = (path: string): boolean => {
     if (path === "/") {
@@ -100,6 +97,14 @@ export default function Layout() {
 
   const closeMobileSidebar = () => setIsMobileOpen(false);
 
+  const { loading: wpLoading, value: workspaces, error } = useAsync(async () => {
+    if (!user) {
+      return [];
+    }
+    const response = await WorkspaceService.getMyWorkspaces();
+    return response.items;
+  }, [user]);
+
   const handleLogout = () => {
     dispatch(logout());
     navigate("/login");
@@ -109,17 +114,38 @@ export default function Layout() {
     navigate("/settings/profile");
   };
 
+  const getContextData = async () => {
+    if (!isLoading && !user) {
+      return;
+    }
+    try {
+      const currentWorkspace = await WorkspaceService.getCurrentWorkspace();
+      dispatch(setCurrentWorkspace(currentWorkspace));
+
+      if (currentWorkspace) {
+        const currentCycle = await CycleService.getCurrentCycle();
+        dispatch(setCurrentCycle(currentCycle));
+      }
+    } catch (error) {
+      console.error("Failed to fetch workspaces:", error);
+      if (error?.message === "Cycle not found.") {
+        setOpenCreateCycleDialog(true);
+        return;
+      }
+    }
+  }
+
+  useEffect(() => {
+    getContextData();
+  }, [user]);
+
   if (isLoading || !user) return <LoadingScreen />;
 
   return (
     <div className="layout-container">
-      <div
-        className={clsx("sidebar-overlay", { visible: isMobileOpen })}
-        onClick={closeMobileSidebar}
-      />
+      <div className={clsx("sidebar-overlay", { visible: isMobileOpen })} onClick={closeMobileSidebar} />
       <div className={clsx("sidebar", { collapse: isCollapsed, "mobile-open": isMobileOpen })}>
         <SidebarHeader isCollapsed={isCollapsed} onToggle={handleSidebarToggle} />
-
         <div className="navigation-container">
           {navItems.map((item) => (
             <div key={item.path}>
@@ -134,18 +160,19 @@ export default function Layout() {
             </div>
           ))}
         </div>
-
-        <WorkspacesList
-          workspaces={MOCK_WORKSPACES}
-          displayedWorkspaces={displayedWorkspaces}
-          isCollapsed={isCollapsed}
-        />
-
+        {wpLoading && <div style={{ padding: "1rem" }}>Loading workspaces...</div>}
+        {error && <div style={{ padding: "1rem", color: "red" }}>Failed to load workspaces</div>}
+        {workspaces && (
+          <WorkspacesList
+            workspaces={workspaces}
+            isCollapsed={isCollapsed}
+          />
+        )}
         <div className="navigation-container" style={{ marginTop: "auto", marginBottom: "1rem" }}>
           <Link to="/settings" style={{ textDecoration: "none", color: "inherit" }}>
             <div className={clsx("navigation-item", { active: isActive("/settings") })}>
               <RiSettings3Line size={20} />
-              <div className="navigation-item-label">Settings</div>
+              <div className="navigation-item-label">{t("SIDEBAR.SETTINGS")}</div>
             </div>
           </Link>
         </div>
@@ -169,6 +196,10 @@ export default function Layout() {
       <NotificationDrawer
         open={openNotificationDrawer}
         onOpenChange={setOpenNotificationDrawer}
+      />
+      <AskCreateCycleDialog
+        open={openCreateCycleDialog}
+        onOpenChange={setOpenCreateCycleDialog}
       />
     </div>
   );

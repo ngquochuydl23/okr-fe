@@ -1,0 +1,114 @@
+{
+  "COMMON": {
+    "BUTTON": {
+      "FILTER": "Filter",
+      "APPLY": "Apply",
+      "CLOSE": "Close",
+      "SAVE": "Save",
+      "CANCEL": "Cancel"
+    }
+  },
+  "COMPONENTS": {
+    "PAGINATION": {
+      "SHOWING_RESULTS": "Showing {{from}} - {{to}} of {{total}} results",
+      "ITEMS_PER_PAGE": "{{count}} / page",
+      "PREVIOUS": "Previous",
+      "NEXT": "Next"
+    }
+  },
+  "DIALOG": {
+    "ASK_CREATE_CYCLE": {
+      "NO_ACTIVE_CYCLE_FOUND": "No Active Cycle Found",
+      "DESCRIPTION": "It seems that there is no active cycle in your workspace. Please create a cycle to start setting and tracking your OKRs.",
+      "GO_TO_SETTINGS": "Go to settings",
+      "LATER_BUTTON": "Later"
+    }
+  },
+  "HEADER": {
+    "WORKSPACE": "Workspace",
+    "LOG_OUT": "Log out",
+    "PROFILE": "Profile"
+  },
+  "SIDEBAR": {
+    "DASHBOARD": "Dashboard",
+    "OBJECTIVES": "Objectives",
+    "CHILD_OBJECTIVES": {
+      "WORKSPACE": "Workspace",
+      "TEAM": "Team",
+      "PERSONAL": "Personal",
+      "SUPPORTING": "Supporting"
+    },
+    "KEY_RESULTS": "Key Results",
+    "MISSIONS": "Missions",
+    "TEAMS": "Teams",
+    "SETTINGS": "Settings"
+  },
+  "MODULES": {
+    "DASHBOARD": {
+      "PERFORMANCE_SNAPSHOT": "Performance Snapshot",
+      "SAY_HELLO": "Hi, {{name}}. Here is your OKR health overview.",
+      "DESCRIPTION": "Track delivery signals, detect risk early, and focus your next action in one view.",
+      "CURRENT_CYCLE_NAME": "{{cycleName}} cycle",
+      "CORE_METRICS": "Core Metrics",
+      "CORE_METRICS_DESCRIPTION": "High-level numbers from your current cycle.",
+      "FOCUS_AREA": {
+        "FOCUS_NOW": "Focus now",
+        "N_OKRS_NEED_ATTENTION": "{{count}} OKRs need attention",
+        "ATTENTION_DESCRIPTION": "At risk this week. Assign owners and add unblockers.",
+        "N_CHECKINS_PENDING": "{{count}} check-ins pending",
+        "CHECKINS_PENDING_DESCRIPTION": "Check-ins are pending this week. Follow up with your",
+        "N_KEYRESULTS_IMPROVED": "{{count}} key results improved",
+        "KEYRESULTS_IMPROVED_DESCRIPTION": "Momentum is strong in Product and Engineering teams."
+      },
+      "STATUS_AND_TREND": {
+        "TITLE": "Status & trends",
+        "DESCRIPTION": "Distribution and weekly trend movement."
+      }
+    },
+    "SETTINGS": {
+      "WORKSPACE_CONTROL_CENTER": "Workspace control center",
+      "TITLE": "Settings",
+      "DESCRIPTION": "Configure your workspace preferences, account details, and operational modules.",
+      "WORKSPACE_SETTINGS": "Workspace settings",
+      "WORKSPACE_SETTINGS_DESCRIPTION": "Manage workspace information, preferences and configurations",
+      "PROFILE_SETTINGS": "Profile settings",
+      "PROFILE_SETTINGS_DESCRIPTION": "Update your personal information and account details",
+      "CYCLE_SETTINGS": "Cycle settings",
+      "CYCLE_SETTINGS_DESCRIPTION": "Configure OKR cycles, timelines and review periods",
+      "MEMBER_MANAGEMENT": "Member management",
+      "MEMBER_MANAGEMENT_DESCRIPTION": "Manage team members, roles and permissions",
+      "MEASURE_UNIT_MANAGEMENT": "Measure unit management",
+      "MEASURE_UNIT_MANAGEMENT_DESCRIPTION": "Define and configure measurement units for key results",
+      "CYCLE_MANAGEMENT": {
+        "TITLE": "Cycle management",
+        "DESCRIPTION": "Organize planning periods, monitor update rhythm, and keep your objective timelines aligned.",
+        "TOTAL_CYCLES": "Total cycles",
+        "PAST_CYCLES": "Past cycles",
+        "INCOMING_CYCLES": "Incoming cycles",
+        "CYCLES_LIST": "Cycles",
+        "SEARCH_PLACEHOLDER": "Search cycles...",
+        "FILTER_DIALOG": {
+          "FILTER_CYCLES": "Filter cycles",
+          "FILTER_CYCLES_DESCRIPTION": "Filter cycles by status or date range."
+        },
+        "ADD_CYCLE_BUTTON": "Add cycle",
+        "ADD_EDIT_CYCLE_DIALOG": {
+          "CREATE_CYCLE_TITLE": "Create cycle",
+          "EDIT_CYCLE_TITLE": "Edit cycle",
+          "CREATE_CYCLE_DESCRIPTION": "Add a new cycle to the workspace.",
+          "EDIT_CYCLE_DESCRIPTION": "Update cycle details and configurations.",
+          "NAME_LABEL": "Name",
+          "DESCRIPTION_LABEL": "Description",
+          "DESCRIPTION_PLACEHOLDER": "Description of the cycle"
+        },
+        "COLUMNS": {
+          "NAME": "Name",
+          "DESCRIPTION": "Description",
+          "LAST_UPDATED": "Last updated",
+          "ACTIONS": "Actions"
+        }
+        
+      }
+    }
+  }
+}

@@ -151,7 +151,7 @@
     padding: 12px;
   }
 
-  &__card + &__card {
+  &__card+&__card {
     margin-top: 10px;
   }
 
@@ -199,7 +199,11 @@
 
   &__mobile-filter-btn {
     display: none;
-    width: auto;
+    width: 100%;
+
+    button {
+      width: 100%;
+    }
   }
 
   &__mobile-add-btn {
@@ -228,6 +232,14 @@
   &__col-last-updated,
   &__col-actions {
     white-space: nowrap;
+  }
+}
+
+// Date range row
+.cycle-date-row {
+  &__field {
+    flex: 1;
+    min-width: 0;
   }
 }
 

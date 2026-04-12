@@ -32,15 +32,15 @@ export const cycleService = {
     });
   },
 
-  create: async (data: Pick<CycleDTO, "name" | "description">): Promise<CycleDTO> => {
+  create: async (data: Pick<CycleDTO, "name" | "description" | "startDate" | "endDate">): Promise<CycleDTO> => {
     return new Promise((resolve) => {
       const newCycle: CycleDTO = {
         id: Math.random().toString(36).substr(2, 9),
         name: data.name,
         description: data.description,
         workspace: { id: "w1", name: "Main Workspace" }, // Mock workspace
-        startDate: undefined,
-        endDate: undefined,
+        startDate: data.startDate,
+        endDate: data.endDate,
         createdAt: new Date().toISOString(),
         lastUpdatedAt: new Date().toISOString(),
       };

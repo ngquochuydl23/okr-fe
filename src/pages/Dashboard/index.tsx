@@ -7,6 +7,9 @@ import CheckInChart from "./components/CheckInChart";
 import OKRStackBar from "./components/OKRStackBar";
 import OKRTreeView from "./components/OKRTreeView";
 import { FiAlertTriangle, FiCalendar, FiCheckCircle, FiClock } from "react-icons/fi";
+import { useSelector } from "react-redux";
+import { useAppSelector } from "@/store/hooks";
+import { useTranslation } from "react-i18next";
 
 const metricCards = [
   {
@@ -44,48 +47,48 @@ const metricCards = [
 const focusItems = [
   {
     id: "at-risk",
-    title: "3 OKRs need attention",
-    description: "At risk this week. Assign owners and add unblockers.",
+    title: "N_OKRS_NEED_ATTENTION",
+    description: "ATTENTION_DESCRIPTION",
     icon: <FiAlertTriangle />,
     tone: "warning",
   },
   {
     id: "checkin",
-    title: "14 check-ins pending",
-    description: "Send reminder before Friday 6:00 PM to keep cadence.",
+    title: "N_CHECKINS_PENDING",
+    description: "CHECKINS_PENDING_DESCRIPTION",
     icon: <FiCalendar />,
     tone: "info",
   },
   {
     id: "wins",
-    title: "9 key results improved",
-    description: "Momentum is strong in Product and Engineering teams.",
+    title: "N_KEYRESULTS_IMPROVED",
+    description: "KEYRESULTS_IMPROVED_DESCRIPTION",
     icon: <FiCheckCircle />,
     tone: "success",
   },
 ] as const;
 
 export default function Dashboard() {
+  const { user } = useAppSelector((state) => state.auth);
+  const { t } = useTranslation();
   return (
     <div className="dashboard-page">
       <section className="dashboard-hero">
         <div className="dashboard-hero__content">
-          <span className="dashboard-hero__eyebrow">Performance snapshot</span>
-          <h4>Hi, Huy. Here is your OKR health overview.</h4>
-          <p>
-            Track delivery signals, detect risk early, and focus your next action in one view.
-          </p>
+          <span className="dashboard-hero__eyebrow">{t("MODULES.DASHBOARD.PERFORMANCE_SNAPSHOT")}</span>
+          <h4>{t("MODULES.DASHBOARD.SAY_HELLO", { name: user?.fullName })}</h4>
+          <p>{t("MODULES.DASHBOARD.DESCRIPTION")}</p>
         </div>
         <div className="dashboard-hero__meta">
-          <div className="dashboard-chip dashboard-chip--primary">Q2 2026 cycle</div>
+          <div className="dashboard-chip dashboard-chip--primary">{t("MODULES.DASHBOARD.CURRENT_CYCLE_NAME", { cycleName: "Q2 2026" })}</div>
           <div className="dashboard-chip">Team cadence: Weekly</div>
         </div>
       </section>
 
       <section className="dashboard-section">
         <div className="dashboard-section__header">
-          <h5>Core metrics</h5>
-          <p>High-level numbers from your current cycle.</p>
+          <h5>{t("MODULES.DASHBOARD.CORE_METRICS")}</h5>
+          <p>{t("MODULES.DASHBOARD.CORE_METRICS_DESCRIPTION")}</p>
         </div>
 
         <div className="dashboard-statistic">
@@ -105,8 +108,8 @@ export default function Dashboard() {
 
       <section className="dashboard-section">
         <div className="dashboard-section__header">
-          <h5>Focus now</h5>
-          <p>Recommended actions to keep OKRs on track.</p>
+          <h5>{t("MODULES.DASHBOARD.FOCUS_AREA.FOCUS_NOW")}</h5>
+          <p>{t("MODULES.DASHBOARD.FOCUS_AREA.DESCRIPTION")}</p>
         </div>
 
         <div className="dashboard-focus-list">
@@ -114,8 +117,8 @@ export default function Dashboard() {
             <article key={item.id} className={`dashboard-focus-card dashboard-focus-card--${item.tone}`}>
               <div className="dashboard-focus-card__icon">{item.icon}</div>
               <div className="dashboard-focus-card__body">
-                <h6>{item.title}</h6>
-                <p>{item.description}</p>
+                <h6>{t(item.title, { count: 3 })}</h6>
+                <p>{t(item.description)}</p>
               </div>
             </article>
           ))}
@@ -124,8 +127,8 @@ export default function Dashboard() {
 
       <section className="dashboard-section">
         <div className="dashboard-section__header">
-          <h5>Status & trends</h5>
-          <p>Distribution and weekly trend movement.</p>
+          <h5>{t("MODULES.DASHBOARD.STATUS_AND_TREND.TITLE")}</h5>
+          <p>{t("MODULES.DASHBOARD.STATUS_AND_TREND.DESCRIPTION")}</p>
         </div>
 
         <div className="dashboard-chart">

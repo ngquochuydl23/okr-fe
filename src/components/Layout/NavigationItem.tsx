@@ -31,9 +31,7 @@ export const NavigationItem = ({
     return (
       <>
         <div
-          className={clsx("navigation-item", {
-            active: isParentActive(item),
-          })}
+          className={clsx("navigation-item", { active: isParentActive(item) })}
           onClick={() => onToggleExpand(item.path)}
         >
           <item.icon size={20} />
@@ -69,11 +67,7 @@ export const NavigationItem = ({
 
   return (
     <Link to={item.path} style={{ textDecoration: "none", color: "inherit" }}>
-      <div
-        className={clsx("navigation-item", {
-          active: isActive(item.path),
-        })}
-      >
+      <div className={clsx("navigation-item", { active: isActive(item.path) })}>
         <item.icon size={20} />
         <div className="navigation-item-label">{item.label}</div>
       </div>

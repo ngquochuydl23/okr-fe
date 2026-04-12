@@ -1,0 +1,113 @@
+{
+  "COMMON": {
+    "BUTTON": {
+      "FILTER": "筛选",
+      "APPLY": "应用",
+      "CLOSE": "关闭",
+      "SAVE": "保存",
+      "CANCEL": "取消"
+    }
+  },
+  "COMPONENTS": {
+    "PAGINATION": {
+      "SHOWING_RESULTS": "显示第 {{from}} - {{to}} 条，共 {{total}} 条结果",
+      "ITEMS_PER_PAGE": "{{count}} 条 / 页",
+      "PREVIOUS": "上一页",
+      "NEXT": "下一页"
+    }
+  },
+  "DIALOG": {
+    "ASK_CREATE_CYCLE": {
+      "NO_ACTIVE_CYCLE_FOUND": "未找到正在进行的周期",
+      "DESCRIPTION": "您的工作区似乎没有正在进行的周期。请先创建一个周期，以开始设置和跟踪您的 OKR。",
+      "GO_TO_SETTINGS": "前往设置",
+      "LATER_BUTTON": "稍后"
+    }
+  },
+  "HEADER": {
+    "WORKSPACE": "工作区",
+    "LOG_OUT": "退出登录",
+    "PROFILE": "个人资料"
+  },
+  "SIDEBAR": {
+    "DASHBOARD": "仪表盘",
+    "OBJECTIVES": "目标",
+    "CHILD_OBJECTIVES": {
+      "WORKSPACE": "工作区",
+      "TEAM": "团队",
+      "PERSONAL": "个人",
+      "SUPPORTING": "支撑"
+    },
+    "KEY_RESULTS": "关键结果",
+    "MISSIONS": "任务",
+    "TEAMS": "团队",
+    "SETTINGS": "设置"
+  },
+  "MODULES": {
+    "DASHBOARD": {
+      "PERFORMANCE_SNAPSHOT": "绩效概览",
+      "SAY_HELLO": "你好，{{name}}。以下是你的 OKR 健康概览。",
+      "DESCRIPTION": "在一个视图中跟踪交付信号、及早发现风险，并聚焦你的下一步行动。",
+      "CURRENT_CYCLE_NAME": "{{cycleName}} 周期",
+      "CORE_METRICS": "核心指标",
+      "CORE_METRICS_DESCRIPTION": "来自当前周期的高级别数据。",
+      "FOCUS_AREA": {
+        "FOCUS_NOW": "当前重点",
+        "N_OKRS_NEED_ATTENTION": "有 {{count}} 个 OKR 需要关注",
+        "ATTENTION_DESCRIPTION": "本周存在风险。请分配负责人并补充解除阻碍的措施。",
+        "N_CHECKINS_PENDING": "有 {{count}} 个进度更新待处理",
+        "CHECKINS_PENDING_DESCRIPTION": "本周仍有进度更新待完成。请与相关负责人跟进",
+        "N_KEYRESULTS_IMPROVED": "有 {{count}} 个关键结果已改善",
+        "KEYRESULTS_IMPROVED_DESCRIPTION": "产品和工程团队目前保持着良好的推进势头。"
+      },
+      "STATUS_AND_TREND": {
+        "TITLE": "状态与趋势",
+        "DESCRIPTION": "展示分布情况和每周趋势变化。"
+      }
+    },
+    "SETTINGS": {
+      "WORKSPACE_CONTROL_CENTER": "工作区控制中心",
+      "TITLE": "设置",
+      "DESCRIPTION": "配置您的工作区偏好、账户信息以及运营模块。",
+      "WORKSPACE_SETTINGS": "工作区设置",
+      "WORKSPACE_SETTINGS_DESCRIPTION": "管理工作区信息、偏好设置和相关配置",
+      "PROFILE_SETTINGS": "个人资料设置",
+      "PROFILE_SETTINGS_DESCRIPTION": "更新您的个人信息和账户详情",
+      "CYCLE_SETTINGS": "周期设置",
+      "CYCLE_SETTINGS_DESCRIPTION": "配置 OKR 周期、时间线和评审周期",
+      "MEMBER_MANAGEMENT": "成员管理",
+      "MEMBER_MANAGEMENT_DESCRIPTION": "管理团队成员、角色和权限",
+      "MEASURE_UNIT_MANAGEMENT": "度量单位管理",
+      "MEASURE_UNIT_MANAGEMENT_DESCRIPTION": "为关键结果定义并配置度量单位",
+      "CYCLE_MANAGEMENT": {
+        "TITLE": "周期管理",
+        "DESCRIPTION": "组织计划周期、监控更新节奏，保持目标时间线对齐。",
+        "TOTAL_CYCLES": "周期总数",
+        "PAST_CYCLES": "已结束周期",
+        "INCOMING_CYCLES": "即将开始的周期",
+        "CYCLES_LIST": "周期列表",
+        "SEARCH_PLACEHOLDER": "搜索周期...",
+        "FILTER_DIALOG": {
+          "FILTER_CYCLES": "筛选周期",
+          "FILTER_CYCLES_DESCRIPTION": "按状态或日期范围筛选周期。"
+        },
+        "ADD_CYCLE_BUTTON": "添加周期",
+        "ADD_EDIT_CYCLE_DIALOG": {
+          "CREATE_CYCLE_TITLE": "创建周期",
+          "EDIT_CYCLE_TITLE": "编辑周期",
+          "CREATE_CYCLE_DESCRIPTION": "向工作区添加新周期。",
+          "EDIT_CYCLE_DESCRIPTION": "更新周期详情和配置。",
+          "NAME_LABEL": "名称",
+          "DESCRIPTION_LABEL": "描述",
+          "DESCRIPTION_PLACEHOLDER": "周期描述"
+        },
+        "COLUMNS": {
+          "NAME": "名称",
+          "DESCRIPTION": "描述",
+          "LAST_UPDATED": "最近更新",
+          "ACTIONS": "操作"
+        }
+      }
+    }
+  }
+}

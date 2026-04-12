@@ -23,6 +23,7 @@ import CycleManagement from "./pages/Settings/Cycle";
 import AdminPanel from "./pages/AdminPanel";
 import { LoadingContextProvider } from "./contexts/LoadingContextProvider";
 import Missions from "./pages/Missions"; 
+import { withTranslation } from 'react-i18next';
 
 const router = createBrowserRouter([
   // Public routes
@@ -116,4 +117,4 @@ function App() {
   );
 }
 
-export default App;
+export default withTranslation()(App);

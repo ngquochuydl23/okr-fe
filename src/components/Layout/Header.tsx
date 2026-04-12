@@ -5,6 +5,8 @@ import { CgProfile } from "react-icons/cg";
 import { BiLogOut } from "react-icons/bi";
 import { Avatar } from "../Avatar";
 import WorkspaceDetailDialog from "../dialogs/WorkspaceDetailDialog";
+import { useTranslation } from "react-i18next";
+import { useAppSelector } from "@/store/hooks";
 
 interface HeaderProps {
   onMenuClick: () => void;
@@ -23,6 +25,8 @@ export const Header = ({
   openWorkspaceDialog,
   onWorkspaceDialogChange,
 }: HeaderProps) => {
+  const { t } = useTranslation();
+  const { workspace } = useAppSelector((state) => state.context);
   return (
     <div className="main-section-header">
       <div style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
@@ -35,14 +39,16 @@ export const Header = ({
             src="https://companieslogo.com/img/orig/MAERSK-B.CO-cdb8c805.png?t=1720244492"
             alt="Workspace Logo"
           />
-          <div>
-            <WorkspaceDetailDialog
-              open={openWorkspaceDialog}
-              onOpenChange={onWorkspaceDialogChange}
-              trigger={<div className="workspace-name">Maersk</div>}
-            />
-            <div className="vision-name">Integrated Container Logistics</div>
-          </div>
+          {workspace &&
+            <div>
+              <WorkspaceDetailDialog
+                open={openWorkspaceDialog}
+                onOpenChange={onWorkspaceDialogChange}
+                trigger={<div className="workspace-name">{workspace.name}</div>}
+              />
+              <div className="vision-name">Integrated Container Logistics</div>
+            </div>
+          }
         </div>
       </div>
       <div className="right">
@@ -65,13 +71,13 @@ export const Header = ({
               <span>
                 <CgProfile size={20} />
               </span>
-              Profile
+              {t('HEADER.PROFILE')}
             </div>
             <div className="popover-content-item" onClick={onLogoutClick}>
               <span>
                 <BiLogOut size={20} />
               </span>
-              Sign Out
+              {t('HEADER.LOG_OUT')}
             </div>
           </Popover.Content>
         </Popover.Root>

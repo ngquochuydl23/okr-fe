@@ -1,0 +1,113 @@
+{
+  "COMMON": {
+    "BUTTON": {
+      "FILTER": "필터",
+      "APPLY": "적용",
+      "CLOSE": "닫기",
+      "SAVE": "저장",
+      "CANCEL": "취소"
+    }
+  },
+  "COMPONENTS": {
+    "PAGINATION": {
+      "SHOWING_RESULTS": "전체 {{total}}개 중 {{from}} - {{to}} 표시",
+      "ITEMS_PER_PAGE": "{{count}}개 / 페이지",
+      "PREVIOUS": "이전",
+      "NEXT": "다음"
+    }
+  },
+  "DIALOG": {
+    "ASK_CREATE_CYCLE": {
+      "NO_ACTIVE_CYCLE_FOUND": "활성 사이클을 찾을 수 없습니다",
+      "DESCRIPTION": "워크스페이스에 활성 사이클이 없는 것 같습니다. OKR을 설정하고 추적하려면 사이클을 생성해 주세요.",
+      "GO_TO_SETTINGS": "설정으로 이동",
+      "LATER_BUTTON": "나중에"
+    }
+  },
+  "HEADER": {
+    "WORKSPACE": "워크스페이스",
+    "LOG_OUT": "로그아웃",
+    "PROFILE": "프로필"
+  },
+  "SIDEBAR": {
+    "DASHBOARD": "대시보드",
+    "OBJECTIVES": "목표",
+    "CHILD_OBJECTIVES": {
+      "WORKSPACE": "워크스페이스",
+      "TEAM": "팀",
+      "PERSONAL": "개인",
+      "SUPPORTING": "지원"
+    },
+    "KEY_RESULTS": "핵심 결과",
+    "MISSIONS": "미션",
+    "TEAMS": "팀",
+    "SETTINGS": "설정"
+  },
+  "MODULES": {
+    "DASHBOARD": {
+      "PERFORMANCE_SNAPSHOT": "성과 스냅샷",
+      "SAY_HELLO": "안녕하세요, {{name}}님. OKR 상태 개요를 확인해 보세요.",
+      "DESCRIPTION": "실행 신호를 추적하고, 위험을 조기에 감지하며, 다음 행동에 집중할 수 있도록 한 화면에 보여줍니다.",
+      "CURRENT_CYCLE_NAME": "{{cycleName}} 사이클",
+      "CORE_METRICS": "핵심 지표",
+      "CORE_METRICS_DESCRIPTION": "현재 사이클의 상위 수준 수치입니다.",
+      "FOCUS_AREA": {
+        "FOCUS_NOW": "지금 집중",
+        "N_OKRS_NEED_ATTENTION": "{{count}}개의 OKR에 주의가 필요합니다",
+        "ATTENTION_DESCRIPTION": "이번 주 위험 상태입니다. 담당자를 지정하고 장애 요인을 추가하세요.",
+        "N_CHECKINS_PENDING": "{{count}}개의 체크인이 대기 중입니다",
+        "CHECKINS_PENDING_DESCRIPTION": "이번 주 체크인이 대기 중입니다. 담당자와 후속 조치를 진행하세요",
+        "N_KEYRESULTS_IMPROVED": "{{count}}개의 핵심 결과가 개선되었습니다",
+        "KEYRESULTS_IMPROVED_DESCRIPTION": "제품 및 엔지니어링 팀에서 좋은 추진력을 보이고 있습니다."
+      },
+      "STATUS_AND_TREND": {
+        "TITLE": "상태 및 추세",
+        "DESCRIPTION": "분포와 주간 추세 변화를 보여줍니다."
+      }
+    },
+    "SETTINGS": {
+      "WORKSPACE_CONTROL_CENTER": "워크스페이스 제어 센터",
+      "TITLE": "설정",
+      "DESCRIPTION": "워크스페이스 환경설정, 계정 정보 및 운영 모듈을 구성합니다.",
+      "WORKSPACE_SETTINGS": "워크스페이스 설정",
+      "WORKSPACE_SETTINGS_DESCRIPTION": "워크스페이스 정보, 환경설정 및 구성을 관리합니다",
+      "PROFILE_SETTINGS": "프로필 설정",
+      "PROFILE_SETTINGS_DESCRIPTION": "개인 정보와 계정 세부 정보를 업데이트합니다",
+      "CYCLE_SETTINGS": "사이클 설정",
+      "CYCLE_SETTINGS_DESCRIPTION": "OKR 사이클, 일정 및 검토 기간을 구성합니다",
+      "MEMBER_MANAGEMENT": "구성원 관리",
+      "MEMBER_MANAGEMENT_DESCRIPTION": "팀 구성원, 역할 및 권한을 관리합니다",
+      "MEASURE_UNIT_MANAGEMENT": "측정 단위 관리",
+      "MEASURE_UNIT_MANAGEMENT_DESCRIPTION": "핵심 결과에 사용할 측정 단위를 정의하고 구성합니다",
+      "CYCLE_MANAGEMENT": {
+        "TITLE": "사이클 관리",
+        "DESCRIPTION": "계획 기간을 정리하고 업데이트 리듬을 모니터링하며 목표 타임라인을 맞춥니다.",
+        "TOTAL_CYCLES": "전체 사이클",
+        "PAST_CYCLES": "지난 사이클",
+        "INCOMING_CYCLES": "예정 사이클",
+        "CYCLES_LIST": "사이클 목록",
+        "SEARCH_PLACEHOLDER": "사이클 검색...",
+        "FILTER_DIALOG": {
+          "FILTER_CYCLES": "사이클 필터",
+          "FILTER_CYCLES_DESCRIPTION": "상태 또는 날짜 범위로 사이클을 필터링합니다."
+        },
+        "ADD_CYCLE_BUTTON": "사이클 추가",
+        "ADD_EDIT_CYCLE_DIALOG": {
+          "CREATE_CYCLE_TITLE": "사이클 생성",
+          "EDIT_CYCLE_TITLE": "사이클 편집",
+          "CREATE_CYCLE_DESCRIPTION": "워크스페이스에 새 사이클을 추가합니다.",
+          "EDIT_CYCLE_DESCRIPTION": "사이클 세부 정보와 설정을 업데이트합니다.",
+          "NAME_LABEL": "이름",
+          "DESCRIPTION_LABEL": "설명",
+          "DESCRIPTION_PLACEHOLDER": "사이클 설명"
+        },
+        "COLUMNS": {
+          "NAME": "이름",
+          "DESCRIPTION": "설명",
+          "LAST_UPDATED": "최근 업데이트",
+          "ACTIONS": "작업"
+        }
+      }
+    }
+  }
+}

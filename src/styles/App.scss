@@ -11,6 +11,10 @@
   padding: var(--section-gap-lg) 0;
 }
 
+button {
+  cursor: pointer !important;
+}
+
 .logo {
   height: 6em;
   padding: var(--space-4);

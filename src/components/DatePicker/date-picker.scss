@@ -1,0 +1,117 @@
+.date-picker-trigger {
+  width: 100%;
+  justify-content: flex-start;
+  font-weight: 400;
+  cursor: pointer;
+
+  &--empty {
+    color: var(--gray-a8);
+  }
+
+  &__label {
+    flex: 1;
+    text-align: left;
+  }
+}
+
+.date-picker-popover {
+  padding: 0 !important;
+  border-radius: var(--radius-3);
+  box-shadow: var(--shadow-4);
+
+  .rdp-root {
+    --rdp-accent-color: #003b95;
+    --rdp-accent-background-color: rgba(79, 126, 213, 0.12);
+    --rdp-day_button-border-radius: 50%;
+    --rdp-day_button-height: 36px;
+    --rdp-day_button-width: 36px;
+    --rdp-selected-font: 500 13px / 1 inherit;
+    font-family: inherit;
+    font-size: 13px;
+    padding: 16px;
+  }
+
+  /* ----- Caption / month nav ----- */
+  .rdp-month_caption {
+    font-weight: 600;
+    font-size: 14px;
+    padding: 0 0 12px;
+  }
+
+  .rdp-nav {
+    gap: 4px;
+  }
+
+  .rdp-button_previous,
+  .rdp-button_next {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    border: 1.5px solid var(--gray-6);
+    background: transparent;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: var(--gray-12);
+    transition: background-color 120ms ease, border-color 120ms ease;
+
+    &:hover {
+      background-color: var(--gray-a3);
+      border-color: var(--gray-8);
+    }
+
+    svg {
+      width: 14px;
+      height: 14px;
+    }
+  }
+
+  .rdp-weekday {
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--gray-a9);
+    padding-bottom: 4px;
+  }
+
+  .rdp-day {}
+
+  .rdp-day_button {
+    border-radius: 50%;
+    transition: background-color 120ms ease;
+  }
+
+  .rdp-day:not(.rdp-selected):not(.rdp-disabled) .rdp-day_button:hover {
+    background-color: var(--gray-a3);
+  }
+
+  .rdp-selected .rdp-day_button {
+    background-color: #003b95;
+    color: #fff;
+    font-weight: 500;
+    font-size: 13px;
+    border-radius: 50%;
+  }
+
+  .rdp-today:not(.rdp-selected) .rdp-day_button {
+    font-weight: 700;
+    color: #003b95;
+    position: relative;
+  }
+
+  .rdp-outside .rdp-day_button {
+    opacity: 0.3;
+  }
+
+  .rdp-disabled .rdp-day_button {
+    opacity: 0.3;
+    cursor: not-allowed;
+  }
+
+  /* ----- Range (unused for now, but guard against leaking) ----- */
+  .rdp-range_start,
+  .rdp-range_end,
+  .rdp-range_middle {
+    background: transparent;
+  }
+}

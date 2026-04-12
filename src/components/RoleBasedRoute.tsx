@@ -1,6 +1,6 @@
 import { Navigate } from 'react-router-dom'
 import { useAppSelector } from '@/store/hooks'
-import type { UserRole } from '@/store/authSlice'
+import type { UserRole } from '@/store/slices/authSlice'
 
 interface RoleBasedRouteProps {
   children: React.ReactNode

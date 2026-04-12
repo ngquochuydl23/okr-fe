@@ -1,7 +1,7 @@
 import { useState, useEffect, Fragment } from "react";
 import { useForm, Controller } from "react-hook-form";
-import { Text, Flex, Button, Badge, Table, Progress, IconButton, HoverCard, Avatar, Box, Heading, TextField, Select, Dialog, Grid, Tooltip } from "@radix-ui/themes";
-import { TbTargetArrow, TbChevronRight, TbChevronDown, TbSearch, TbPlus, TbFilter } from "react-icons/tb";
+import { Text, Flex, Button, Badge, Table, Progress, IconButton, HoverCard, Avatar, Box, Heading, TextField, Select, Dialog, Separator, Tooltip } from "@radix-ui/themes";
+import { TbTargetArrow, TbChevronRight, TbChevronDown, TbSearch, TbPlus, TbFilter, TbX } from "react-icons/tb";
 import Pagination from "@/components/Pagination";
 import { DEFAULT_COLUMNS, type ObjectiveTableColumn, type ObjectiveTypeValue } from "./objective-table.config";
 import { HiOutlineFlag } from "react-icons/hi";
@@ -232,25 +232,116 @@ export default function ObjectiveTable({
                   {activeFiltersCount > 0 && <Badge variant="solid" radius="full" style={{ marginLeft: '8px' }}>{activeFiltersCount}</Badge>}
                 </Button>
               </Dialog.Trigger>
-              <Dialog.Content style={{ maxWidth: 450 }}>
-                <Dialog.Title>Filter Objectives</Dialog.Title>
+              <Dialog.Content style={{ maxWidth: 450, padding: 0, overflow: 'hidden' }} aria-describedby={undefined}>
+                {/* Header */}
+                <Flex justify="between" align="center" px="4" py="3">
+                  <Dialog.Close>
+                    <IconButton variant="ghost" color="gray" size="2" type="button">
+                      <TbX size={18} />
+                    </IconButton>
+                  </Dialog.Close>
+                  <Dialog.Title mb="0" className="objective-table__filter-dialog-title">Filter Objectives</Dialog.Title>
+                  <Button variant="ghost" size="2" color="gray" onClick={handleClearFilters} type="button">
+                    Reset All
+                  </Button>
+                </Flex>
+                <Separator size="4" />
+
                 <form onSubmit={handleSubmit(handleApplyFilters)}>
-                  <Grid columns="2" gap="3" mt="4">
-                    {renderFilters()}
-                  </Grid>
-                  <Flex mt="4" justify="between">
-                    <Button variant="outline" color="gray" onClick={handleClearFilters} type="button">
-                      Clear All
+                  <Box px="4" py="4" style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
+
+                    {/* Status */}
+                    <Box>
+                      <Text size="2" color="gray" weight="medium" as="div" mb="2">Status</Text>
+                      <Controller
+                        name="status"
+                        control={control}
+                        render={({ field }) => (
+                          <Flex gap="2" wrap="wrap">
+                            {[
+                              { value: null, label: 'All' },
+                              { value: 'on-track', label: 'On Track' },
+                              { value: 'at-risk', label: 'At Risk' },
+                              { value: 'behind', label: 'Behind' },
+                            ].map((opt) => (
+                              <button
+                                key={opt.label}
+                                type="button"
+                                className={`filter-chip${(!field.value && opt.value === null) || field.value === opt.value ? ' filter-chip--active' : ''}`}
+                                onClick={() => field.onChange(opt.value)}
+                              >
+                                {opt.label}
+                              </button>
+                            ))}
+                          </Flex>
+                        )}
+                      />
+                    </Box>
+
+                    {/* Cycle */}
+                    <Box>
+                      <Text size="2" color="gray" weight="medium" as="div" mb="2">Cycle</Text>
+                      <Controller
+                        name="cycle"
+                        control={control}
+                        render={({ field }) => (
+                          <Flex gap="2" wrap="wrap">
+                            {[
+                              { value: 'q1-2026', label: 'Q1 2026' },
+                              { value: 'q2-2026', label: 'Q2 2026' },
+                              { value: 'q4-2025', label: 'Q4 2025' },
+                            ].map((opt) => (
+                              <button
+                                key={opt.value}
+                                type="button"
+                                className={`filter-chip${field.value === opt.value ? ' filter-chip--active' : ''}`}
+                                onClick={() => field.onChange(field.value === opt.value ? null : opt.value)}
+                              >
+                                {opt.label}
+                              </button>
+                            ))}
+                          </Flex>
+                        )}
+                      />
+                    </Box>
+
+                    {/* Team */}
+                    {type === ObjectiveType.TEAM && (
+                      <Box>
+                        <Text size="2" color="gray" weight="medium" as="div" mb="2">Team</Text>
+                        <Controller
+                          name="team"
+                          control={control}
+                          render={({ field }) => (
+                            <Flex gap="2" wrap="wrap">
+                              {[
+                                { value: 'export-control', label: 'Export Control Team' },
+                                { value: 'container-shipment', label: 'Container Shipment Team' },
+                              ].map((opt) => (
+                                <button
+                                  key={opt.value}
+                                  type="button"
+                                  className={`filter-chip${field.value === opt.value ? ' filter-chip--active' : ''}`}
+                                  onClick={() => field.onChange(field.value === opt.value ? null : opt.value)}
+                                >
+                                  {opt.label}
+                                </button>
+                              ))}
+                            </Flex>
+                          )}
+                        />
+                      </Box>
+                    )}
+
+                  </Box>
+
+                  {/* Footer */}
+                  <Separator size="4" />
+                  <Box px="4" py="3">
+                    <Button type="submit" className="objective-table__filter-submit" style={{ width: '100%' }} size="2" radius="full">
+                      Apply Filters{activeFiltersCount > 0 ? ` (${activeFiltersCount})` : ''}
                     </Button>
-                    <Flex gap="3">
-                      <Dialog.Close>
-                        <Button variant="soft" color="gray" type="button">
-                          Cancel
-                        </Button>
-                      </Dialog.Close>
-                      <Button type="submit">Apply Filters</Button>
-                    </Flex>
-                  </Flex>
+                  </Box>
                 </form>
               </Dialog.Content>
             </Dialog.Root>

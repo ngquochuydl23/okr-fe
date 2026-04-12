@@ -1,15 +1,10 @@
-import animationData from "../../assets/lotties/Loading.json";
 import "./loading-screen.scss";
-import { useLottie } from "lottie-react";
+import { Spinner } from '@radix-ui/themes'
 
 const LoadingScreen = () => {
-  const { View } = useLottie({
-    animationData: animationData,
-    loop: true,
-  });
   return (
     <div className="loading-view">
-      <div className="inner-view">{View}</div>
+      <Spinner size="3" />
     </div>
   );
 };

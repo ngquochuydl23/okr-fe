@@ -1,0 +1,113 @@
+{
+  "COMMON": {
+    "BUTTON": {
+      "FILTER": "Lọc",
+      "APPLY": "Áp dụng",
+      "CLOSE": "Đóng",
+      "SAVE": "Lưu",
+      "CANCEL": "Hủy"
+    }
+  },
+  "COMPONENTS": {
+    "PAGINATION": {
+      "SHOWING_RESULTS": "Hiển thị {{from}} - {{to}} trong tổng số {{total}} kết quả",
+      "ITEMS_PER_PAGE": "{{count}} / trang",
+      "PREVIOUS": "Trước",
+      "NEXT": "Tiếp"
+    }
+  },
+  "DIALOG": {
+    "ASK_CREATE_CYCLE": {
+      "NO_ACTIVE_CYCLE_FOUND": "Không Tìm Thấy Chu Kỳ Đang Hoạt Động",
+      "DESCRIPTION": "Có vẻ như không có chu kỳ nào đang hoạt động trong không gian làm việc của bạn. Vui lòng tạo một chu kỳ để bắt đầu thiết lập và theo dõi OKR.",
+      "GO_TO_SETTINGS": "Đi tới cài đặt",
+      "LATER_BUTTON": "Để sau"
+    }
+  },
+  "HEADER": {
+    "WORKSPACE": "Không gian làm việc",
+    "LOG_OUT": "Đăng xuất",
+    "PROFILE": "Hồ sơ"
+  },
+  "SIDEBAR": {
+    "DASHBOARD": "Tổng quan",
+    "OBJECTIVES": "Mục tiêu",
+    "CHILD_OBJECTIVES": {
+      "WORKSPACE": "Không gian làm việc",
+      "TEAM": "Nhóm",
+      "PERSONAL": "Cá nhân",
+      "SUPPORTING": "Hỗ trợ"
+    },
+    "KEY_RESULTS": "Kết quả then chốt",
+    "MISSIONS": "Nhiệm vụ",
+    "TEAMS": "Nhóm",
+    "SETTINGS": "Cài đặt"
+  },
+  "MODULES": {
+    "DASHBOARD": {
+      "PERFORMANCE_SNAPSHOT": "Tổng quan hiệu suất",
+      "SAY_HELLO": "Xin chào, {{name}}. Đây là tổng quan về OKR của bạn.",
+      "DESCRIPTION": "Theo dõi tín hiệu thực hiện, phát hiện rủi ro sớm và tập trung hành động tiếp theo trong một màn hình.",
+      "CURRENT_CYCLE_NAME": "Chu kỳ {{cycleName}}",
+      "CORE_METRICS": "Chỉ số cốt lõi",
+      "CORE_METRICS_DESCRIPTION": "Các con số tổng quan từ chu kỳ hiện tại của bạn.",
+      "FOCUS_AREA": {
+        "FOCUS_NOW": "Tập trung ngay",
+        "N_OKRS_NEED_ATTENTION": "{{count}} OKR cần chú ý",
+        "ATTENTION_DESCRIPTION": "Có nguy cơ trong tuần này. Hãy phân công người phụ trách và thêm giải pháp.",
+        "N_CHECKINS_PENDING": "{{count}} check-in đang chờ",
+        "CHECKINS_PENDING_DESCRIPTION": "Các check-in đang chờ trong tuần này. Hãy theo dõi với",
+        "N_KEYRESULTS_IMPROVED": "{{count}} kết quả then chốt được cải thiện",
+        "KEYRESULTS_IMPROVED_DESCRIPTION": "Đà tiến triển đang mạnh ở nhóm Sản phẩm và Kỹ thuật."
+      },
+      "STATUS_AND_TREND": {
+        "TITLE": "Trạng thái & xu hướng",
+        "DESCRIPTION": "Phân phối và biến động xu hướng hàng tuần."
+      }
+    },
+    "SETTINGS": {
+      "WORKSPACE_CONTROL_CENTER": "Trung tâm điều khiển không gian làm việc",
+      "TITLE": "Cài đặt",
+      "DESCRIPTION": "Cấu hình tùy chọn không gian làm việc, thông tin tài khoản và các mô-đun vận hành.",
+      "WORKSPACE_SETTINGS": "Cài đặt không gian làm việc",
+      "WORKSPACE_SETTINGS_DESCRIPTION": "Quản lý thông tin, tùy chọn và cấu hình của không gian làm việc",
+      "PROFILE_SETTINGS": "Cài đặt hồ sơ",
+      "PROFILE_SETTINGS_DESCRIPTION": "Cập nhật thông tin cá nhân và chi tiết tài khoản của bạn",
+      "CYCLE_SETTINGS": "Cài đặt chu kỳ",
+      "CYCLE_SETTINGS_DESCRIPTION": "Cấu hình chu kỳ OKR, mốc thời gian và giai đoạn đánh giá",
+      "MEMBER_MANAGEMENT": "Quản lý thành viên",
+      "MEMBER_MANAGEMENT_DESCRIPTION": "Quản lý thành viên nhóm, vai trò và quyền hạn",
+      "MEASURE_UNIT_MANAGEMENT": "Quản lý đơn vị đo lường",
+      "MEASURE_UNIT_MANAGEMENT_DESCRIPTION": "Định nghĩa và cấu hình các đơn vị đo lường cho kết quả then chốt",
+      "CYCLE_MANAGEMENT": {
+        "TITLE": "Quản lý chu kỳ",
+        "DESCRIPTION": "Sắp xếp các giai đoạn lập kế hoạch, theo dõi nhịp độ cập nhật và giữ tiến độ mục tiêu luôn đồng bộ.",
+        "TOTAL_CYCLES": "Tổng số chu kỳ",
+        "PAST_CYCLES": "Chu kỳ đã qua",
+        "INCOMING_CYCLES": "Chu kỳ sắp tới",
+        "CYCLES_LIST": "Danh sách chu kỳ",
+        "SEARCH_PLACEHOLDER": "Tìm kiếm chu kỳ...",
+        "FILTER_DIALOG": {
+          "FILTER_CYCLES": "Lọc chu kỳ",
+          "FILTER_CYCLES_DESCRIPTION": "Lọc chu kỳ theo trạng thái hoặc khoảng thời gian."
+        },
+        "ADD_CYCLE_BUTTON": "Thêm chu kỳ",
+        "ADD_EDIT_CYCLE_DIALOG": {
+          "CREATE_CYCLE_TITLE": "Tạo chu kỳ",
+          "EDIT_CYCLE_TITLE": "Chỉnh sửa chu kỳ",
+          "CREATE_CYCLE_DESCRIPTION": "Thêm một chu kỳ mới vào không gian làm việc.",
+          "EDIT_CYCLE_DESCRIPTION": "Cập nhật chi tiết và cấu hình của chu kỳ.",
+          "NAME_LABEL": "Tên",
+          "DESCRIPTION_LABEL": "Mô tả",
+          "DESCRIPTION_PLACEHOLDER": "Mô tả của chu kỳ"
+        },
+        "COLUMNS": {
+          "NAME": "Tên",
+          "DESCRIPTION": "Mô tả",
+          "LAST_UPDATED": "Cập nhật gần nhất",
+          "ACTIONS": "Thao tác"
+        }
+      }
+    }
+  }
+}

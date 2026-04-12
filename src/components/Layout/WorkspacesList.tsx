@@ -1,32 +1,21 @@
+import type { WorkspaceDto } from "@/services/workspace/dtos";
 import clsx from "clsx";
 
-interface Workspace {
-  id: string;
-  name: string;
-  logo: string | null;
-  active: boolean;
-}
-
 interface WorkspacesListProps {
-  workspaces: Workspace[];
-  displayedWorkspaces: Workspace[];
+  workspaces: WorkspaceDto[];
   isCollapsed: boolean;
 }
 
 export const WorkspacesList = ({
   workspaces,
-  displayedWorkspaces,
   isCollapsed,
 }: WorkspacesListProps) => {
   return (
     <div className="workspaces">
       <div className="label">Workspaces</div>
       <div className="workspace-list">
-        {displayedWorkspaces.map((workspace) => (
-          <div
-            key={workspace.id}
-            className={clsx("workspace-item", { active: workspace.active })}
-          >
+        {workspaces.map((workspace) => (
+          <div key={workspace.id} className={clsx("workspace-item")}>
             {!isCollapsed && <span className="workspace-item-name">{workspace.name}</span>}
           </div>
         ))}

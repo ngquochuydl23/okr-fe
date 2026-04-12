@@ -1,16 +1,10 @@
+import type { LoggingInUserDto } from "@/services/user/dtos";
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 export type UserRole = "admin" | "manager" | "user";
 
-export interface User {
-  id: string;
-  email: string;
-  name: string;
-  roles: UserRole[];
-}
-
 interface AuthState {
-  user: User | null;
+  user: LoggingInUserDto | null;
   isAuthenticated: boolean;
   isLoading: boolean;
 }
@@ -21,33 +15,22 @@ const initialState: AuthState = {
   isLoading: true,
 };
 
-const loadUserFromStorage = (): User | null => {
-  try {
-    const storedUser = localStorage.getItem("user");
-    return storedUser ? JSON.parse(storedUser) : null;
-  } catch (error) {
-    console.error("Failed to load user from storage:", error);
-    return null;
-  }
-};
-
 const authSlice = createSlice({
   name: "auth",
   initialState: {
     ...initialState,
-    user: loadUserFromStorage(),
-    isAuthenticated: !!loadUserFromStorage(),
+    user: null,
+    isAuthenticated: false,
     isLoading: false,
   },
   reducers: {
     setLoading: (state, action: PayloadAction<boolean>) => {
       state.isLoading = action.payload;
     },
-    loginSuccess: (state, action: PayloadAction<User>) => {
+    loginSuccess: (state, action: PayloadAction<LoggingInUserDto>) => {
       state.user = action.payload;
       state.isAuthenticated = true;
       state.isLoading = false;
-      localStorage.setItem("user", JSON.stringify(action.payload));
     },
     loginFailure: (state) => {
       state.user = null;
@@ -58,7 +41,6 @@ const authSlice = createSlice({
       state.user = null;
       state.isAuthenticated = false;
       state.isLoading = false;
-      localStorage.removeItem("user");
     },
   },
 });

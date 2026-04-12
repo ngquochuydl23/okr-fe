@@ -70,6 +70,17 @@
       min-width: 250px;
     }
   }
+
+  &__filter-dialog-title {
+    font-size: 1rem;
+    font-weight: 600;
+  }
+
+  &__filter-submit {
+    min-height: 44px;
+    font-size: 0.95rem;
+    font-weight: 600;
+  }
 }
 
 // Tablet breakpoint
@@ -124,11 +135,38 @@
     // Ensure sticky logic works here too (inherited from < 1024px usually, but can be explicit if needed)
   }
 }
+// Filter chip buttons (used in mobile filter dialog)
+.filter-chip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 36px;
+  height: 36px;
+  padding: 6px 16px;
+  border-radius: 999px;
+  border: 1.5px solid var(--gray-5);
+  background: transparent !important;
+  box-shadow: none !important;
+  color: var(--gray-11);
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: border-color 0.15s ease, background 0.15s ease, color 0.15s ease;
+  line-height: 1.4;
+  font-family: inherit;
+  white-space: nowrap;
+  flex-shrink: 0;
 
+  &:hover {
+    border-color: var(--accent-8);
+    color: var(--accent-9);
+    background: var(--accent-2) !important;
+  }
 
-// Small mobile
-@media (max-width: 480px) {
-  .objective-table {
-    // Other small mobile styles if needed
+  &--active {
+    border-color: var(--accent-9);
+    background: var(--accent-3) !important;
+    color: var(--accent-9);
+    font-weight: 600;
   }
 }

@@ -2,6 +2,7 @@ import { useMemo } from "react";
 import { Text, Button, Select } from "@radix-ui/themes";
 import { TbChevronLeft, TbChevronRight } from "react-icons/tb";
 import "./pagination.scss";
+import { useTranslation } from "react-i18next";
 
 export interface PaginationProps {
   page: number;
@@ -20,6 +21,7 @@ export default function Pagination({
   onPageChange,
   onPageSizeChange,
 }: PaginationProps) {
+  const { t } = useTranslation();
   const totalPages = Math.max(1, Math.ceil(total / pageSize));
   const from = total === 0 ? 0 : (page - 1) * pageSize + 1;
   const to = Math.min(page * pageSize, total);
@@ -56,39 +58,22 @@ export default function Pagination({
   return (
     <div className="pagination">
       <div className="pagination__info">
-        <Text size="2" color="gray">
-          Showing {from} - {to} of {total} results
-        </Text>
-        <Select.Root
-          value={String(pageSize)}
-          onValueChange={(val) => onPageSizeChange(Number(val))}
-        >
+        <Text size="2" color="gray">{t("COMPONENTS.PAGINATION.SHOWING_RESULTS", { from, to, total })}</Text>
+        <Select.Root value={String(pageSize)} onValueChange={(val) => onPageSizeChange(Number(val))}>
           <Select.Trigger variant="surface" />
           <Select.Content>
-            {pageSizeOptions.map((opt) => (
-              <Select.Item key={opt} value={String(opt)}>
-                {opt} / page
-              </Select.Item>
-            ))}
+            {pageSizeOptions.map((opt) => (<Select.Item key={opt} value={String(opt)}>{t("COMPONENTS.PAGINATION.ITEMS_PER_PAGE", { count: opt })}</Select.Item>))}
           </Select.Content>
         </Select.Root>
       </div>
       <div className="pagination__pages">
-        <Button
-          variant="ghost"
-          size="2"
-          mr="4"
-          disabled={page <= 1}
-          onClick={() => onPageChange(page - 1)}
-        >
+        <Button variant="ghost" size="2" mr="4" disabled={page <= 1} onClick={() => onPageChange(page - 1)}>
           <TbChevronLeft size={16} />
-          Previous
+          {t("COMPONENTS.PAGINATION.PREVIOUS")}
         </Button>
         {pages.map((p) =>
           typeof p === "string" ? (
-            <Text key={p} size="2" color="gray" className="pagination__page-ellipsis" style={{ minWidth: 32, textAlign: "center", letterSpacing: 2 }}>
-              ...
-            </Text>
+            <Text key={p} size="2" color="gray" className="pagination__page-ellipsis" style={{ minWidth: 32, textAlign: "center", letterSpacing: 2 }}>...</Text>
           ) : (
             <Button
               key={p}
@@ -103,14 +88,8 @@ export default function Pagination({
             </Button>
           )
         )}
-        <Button
-          variant="ghost"
-          size="2"
-          ml="4"
-          disabled={page >= totalPages}
-          onClick={() => onPageChange(page + 1)}
-        >
-          Next
+        <Button variant="ghost" size="2" ml="4" disabled={page >= totalPages} onClick={() => onPageChange(page + 1)}>
+          {t("COMPONENTS.PAGINATION.NEXT")}
           <TbChevronRight size={16} />
         </Button>
       </div>
